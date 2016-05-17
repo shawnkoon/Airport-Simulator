@@ -8,6 +8,7 @@ public class Seat
    {
       this.row = row;
       this.col = col;
+      this.isBooked = false;
    }
    
    private boolean getStatus()
