@@ -15,7 +15,7 @@ public class Seat
       return this.isBooked;
    }
    
-   private boolean setStatus(boolean flag)
+   private void setStatus(boolean flag)
    {
       this.isBooked = flag;
    }
