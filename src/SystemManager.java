@@ -13,14 +13,14 @@ public class SystemManager
    
    private void createAirport(String code)
    {
-      /*Airport airport = new Airport(...);
+      /* Call Airport.createAirport(code). - will return null if not satisfied.
       airportList.add(airport);
       */
    }
    
    private void createAirline(String name)
    {
-      /*Airline airline = new Airline(...);
+      /* Call Airline.createAirline(name). - will return null if not satisfied.
       airlineList.add(airline);
       */
    }
