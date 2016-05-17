@@ -2,6 +2,7 @@ import java.util.ArrayList;
 
 public class SystemManager 
 {
+   private TransportationFactory airportFactory;
    private ArrayList<Airport> airportList;
    private ArrayList<Airline> airlineList;
 
@@ -9,6 +10,7 @@ public class SystemManager
    {
       this.airportList = new ArrayList<Airport>();
       this.airlineList = new ArrayList<Airline>();
+      this.airportFactory = new AirportFactory();
    }
    
    private void createAirport(String code)
