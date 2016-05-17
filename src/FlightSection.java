@@ -7,7 +7,7 @@ public class FlightSection
    public FlightSection(String flightClass, int row, int col)
    {
       this.flightClass = flightClass;
-      this.seats = new int[row][col];
+      this.seats = new boolean[row][col];
       this.openSeats = true;
    }
    
