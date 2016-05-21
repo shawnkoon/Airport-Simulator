@@ -23,11 +23,16 @@ public class AirportFactory implements TransportationFactory
     {
         if(name.length() < 6 && name.length() >= 1)
         {
-            return new Company(name);
+            return new Airline(name);
         }
         else
         {
             return null;
         }
+    }
+
+    public Section createSection(String company, String ticketID, int row, int col, String seatClass)
+    {
+        return new FlightSection(company, ticketID, row, col, seatClass);
     }
 }
