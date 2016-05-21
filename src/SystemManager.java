@@ -15,16 +15,12 @@ public class SystemManager
    
    private void createAirport(String code)
    {
-      /* Call Airport.createAirport(code). - will return null if not satisfied.
-      airportList.add(airport);
-      */
+      this.airportFactory.createTransport(code);
    }
    
    private void createAirline(String name)
    {
-      /* Call Airline.createAirline(name). - will return null if not satisfied.
-      airlineList.add(airline);
-      */
+      this.airportFactory.createCompany(name);
    }
    
    private void createFlight(String airportName, String orig, String dest, 
