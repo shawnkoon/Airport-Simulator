@@ -19,7 +19,7 @@ public class AirportFactory implements TransportationFactory
     }
 
     // Checks to see if name is 1 ~ 5 characters.
-    public Company createAirline(String name)
+    public Company createCompany(String name)
     {
         if(name.length() < 6 && name.length() >= 1)
         {
