@@ -23,29 +23,27 @@ public class SystemManager
       this.airportFactory.createCompany(name);
    }
    
-   private void createFlight(String airportName, String orig, String dest,
-                             int year, int month, int day, String id
-                             )
+   private void createFlight(String company, String depart, String destination, int year, int month, int day, String ticketID)
    {
-      
+      this.airportFactory.createPath(company, depart, destination, year, month, day, ticketID);
    }
    
    public void createSection(String airline, String flightID, int row, int col, String seatClass)
    {
-
+      this.airportFactory.createSection(airline, flightID, row, col, seatClass);
    }
    
-   private void findAvailableFlights(String orig, String dest)
+   public void findAvailableFlights(String orig, String dest)
    {
-      /*for(Airport airport : airportList) { } */
+      this.airportFactory.findAvailableSeats(orig, dest);
    }
    
-   private void bookSeat(String airline, String flight, Seat seat, int row, char col)
+   public void bookSeat(String airline, String flight, Seat seat, int row, char col)
    {
       /*Airline air = airlineList.get(airline);*/
    }
    
-   private void displaySystemDetails()
+   public void displaySystemDetails()
    {
       
    }
