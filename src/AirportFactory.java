@@ -35,4 +35,13 @@ public class AirportFactory implements TransportationFactory
     {
         return new FlightSection(company, ticketID, row, col, seatClass);
     }
+
+    public Path createPath(String company, String depart, String destination, int year, int month, int day, String ticketID)
+    {
+        return new Flight(company, depart, destination, year, month, day, ticketID);
+    }
+
+    public void displaySystemDetails() { }
+
+    public void findAvailableSeats(String depart, String destination) { }
 }
