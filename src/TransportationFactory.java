@@ -7,7 +7,8 @@ public interface TransportationFactory
     Company createCompany(String name);
    
    //method sig to create a section
-   
+    Section createSection(String company, String ticketID, int row, int col, String seatClass);
+
    //method sig to create a travel path (FROM - TO)
    
    //method sig to display system details
