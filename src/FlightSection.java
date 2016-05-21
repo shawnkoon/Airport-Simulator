@@ -1,11 +1,13 @@
-public class FlightSection 
+public class FlightSection extends Section
 {
    private String flightClass;
    private boolean[][] seats;
    private boolean openSeats;
    
-   public FlightSection(String flightClass, int row, int col)
+   public FlightSection(String company, String ticketID, int row, int col, String seatClass)
    {
+      super(company, ticketID, row, col, seatClass);
+
       this.flightClass = flightClass;
       this.seats = new boolean[row][col];
       this.openSeats = true;
