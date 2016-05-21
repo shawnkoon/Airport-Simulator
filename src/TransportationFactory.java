@@ -10,9 +10,12 @@ public interface TransportationFactory
     Section createSection(String company, String ticketID, int row, int col, String seatClass);
 
    //method sig to create a travel path (FROM - TO)
+    Path createPath(String company, String depart, String destination, int year, int month, int day, String ticketID);
    
    //method sig to display system details
+    void displaySystemDetails();
    
    //method sig to find all available seats
+    void findAvailableSeats(String depart, String destination);
 
 }
