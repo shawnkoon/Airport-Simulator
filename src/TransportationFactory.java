@@ -4,6 +4,7 @@ public interface TransportationFactory
     Transport createTransport(String name);
    
    //method sig to create travel company (i.e. Delta, Royal, etc.)
+    Company createCompany(String name);
    
    //method sig to create a section
    
