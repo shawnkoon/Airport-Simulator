@@ -13,26 +13,26 @@ public class SystemManager
       this.airportFactory = new AirportFactory();
    }
    
-   private void createAirport(String code)
+   public void createAirport(String code)
    {
       this.airportFactory.createTransport(code);
    }
    
-   private void createAirline(String name)
+   public void createAirline(String name)
    {
       this.airportFactory.createCompany(name);
    }
    
-   private void createFlight(String airportName, String orig, String dest, 
+   private void createFlight(String airportName, String orig, String dest,
                              int year, int month, int day, String id
                              )
    {
       
    }
    
-   private void createSection(String airline, String flightID, int row, int col, Seat s)
+   public void createSection(String airline, String flightID, int row, int col, String seatClass)
    {
-   
+
    }
    
    private void findAvailableFlights(String orig, String dest)
