@@ -3,12 +3,10 @@
  */
 // Objects of this class represent airports.
 // The only information maintained is the name, which must be exactly 3 characters in length.
-public class Airport
+public class Airport extends Transport
 {
-    private String name;
-
     public Airport(String name)
     {
-        this.name = name;
+        super(name);
     }
 }
