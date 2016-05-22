@@ -10,6 +10,7 @@ public class SystemManager
    {
       this.airportList = new ArrayList<Transport>();
       this.airlineList = new ArrayList<Company>();
+
       this.airportFactory = new AirportFactory();
    }
    
@@ -149,9 +150,29 @@ public class SystemManager
       this.airportFactory.createSection(airline, flightID, row, col, seatClass);
    }
    
-   public void findAvailableFlights(String orig, String dest)
+   public void findAvailableFlights(String departure, String destination)
    {
-      //this.airportFactory.findAvailableSeats(orig, dest);
+      /*if(hasAirport(departure) && hasAirport(destination))
+      {
+         for(Transport airPort : this.airportList)
+         {
+             ArrayList<Path> flights = new ArrayList<Path>();
+
+             flights = airPort.getPaths();
+
+             for(Path flight : flights)
+             {
+                 if (flight.getDeparture() == departure && flight.getDestination() == destination)
+                 {
+                     System.out.println("Available flight: " + flight.toString());
+                 }
+             }
+         }
+      }
+      else
+      {
+        System.out.println("No available flights from " + departure.toUpperCase() + " to " + destination.toUpperCase());
+      }*/
    }
    
    public void bookSeat(String airline, String flight, Seat seat, int row, String col)
