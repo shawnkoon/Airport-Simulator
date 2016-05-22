@@ -38,7 +38,7 @@ public class SystemManager
       this.airportFactory.findAvailableSeats(orig, dest);
    }
    
-   public void bookSeat(String airline, String flight, Seat seat, int row, char col)
+   public void bookSeat(String airline, String flight, Seat seat, int row, String col)
    {
       /*Airline air = airlineList.get(airline);*/
    }
