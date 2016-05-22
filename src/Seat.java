@@ -10,13 +10,13 @@ public class Seat
       this.col = col;
       this.isBooked = false;
    }
-   
-   private boolean getStatus()
+
+   public boolean isBooked()
    {
       return this.isBooked;
    }
    
-   private void setStatus(boolean flag)
+   public void bookSeat(boolean flag)
    {
       this.isBooked = flag;
    }
