@@ -2,7 +2,7 @@ public class FlightSection extends Section
 {
    private String flightClass;
    private boolean[][] seats;
-   private boolean openSeats;
+   private boolean seatOpen;
    
    public FlightSection(String company, String ticketID, int row, int col, String seatClass)
    {
@@ -10,7 +10,7 @@ public class FlightSection extends Section
 
       this.flightClass = flightClass;
       this.seats = new boolean[row][col];
-      this.openSeats = true;
+      this.seatOpen = true;
    }
    
    public void bookSeat(int row, int col)
@@ -26,6 +26,6 @@ public class FlightSection extends Section
    
    public boolean hasAvailableSeats()
    {
-      return this.openSeats;
+      return this.seatOpen;
    }
 }
