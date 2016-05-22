@@ -24,7 +24,7 @@ public class FlightSection extends Section
       */
    }
    
-   public boolean hasAvailableSeats()
+   public boolean hasAvailableSeat()
    {
       return this.seatOpen;
    }
