@@ -15,7 +15,7 @@ public class SystemManager
    
    public void createAirport(String code)
    {
-      if(noAirportDuplicate(airportList, code))
+      if(hasAirport(code) == false)
       {
          Transport airport = this.airportFactory.createTransport(code);
 
@@ -34,15 +34,15 @@ public class SystemManager
       }
    }
 
-   private boolean noAirportDuplicate(ArrayList<Transport> list, String code)
+   private boolean hasAirport(String code)
    {
-      boolean res = true;
+      boolean res = false;
 
-      for(Transport tp : list)
+      for(Transport tp : this.airportList)
       {
          if(tp.getName().equals(code))
          {
-            res = false;
+            res = true;
             break;
          }
       }
@@ -52,7 +52,7 @@ public class SystemManager
    
    public void createAirline(String name)
    {
-      if(noAirlineDuplicate(airlineList, name))
+      if(hasAirline(name) == false)
       {
          Company comp = this.airportFactory.createCompany(name);
 
@@ -71,15 +71,15 @@ public class SystemManager
       }
    }
 
-   private boolean noAirlineDuplicate(ArrayList<Company> list, String name)
+   private boolean hasAirline(String name)
    {
-      boolean res = true;
+      boolean res = false;
 
-      for(Company cmp : list)
+      for(Company cmp : this.airlineList)
       {
          if(cmp.getName().equals(name))
          {
-            res = false;
+            res = true;
             break;
          }
       }
