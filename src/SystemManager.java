@@ -2,7 +2,7 @@ import java.util.ArrayList;
 
 public class SystemManager 
 {
-   private TransportationFactory airportFactory;
+   private TransportationFactoryV2 airportFactory;
    private ArrayList<Transport> airportList;
    private ArrayList<Company> airlineList;
 
@@ -151,7 +151,7 @@ public class SystemManager
    
    public void findAvailableFlights(String orig, String dest)
    {
-      this.airportFactory.findAvailableSeats(orig, dest);
+      //this.airportFactory.findAvailableSeats(orig, dest);
    }
    
    public void bookSeat(String airline, String flight, Seat seat, int row, String col)
