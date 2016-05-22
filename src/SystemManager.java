@@ -3,24 +3,88 @@ import java.util.ArrayList;
 public class SystemManager 
 {
    private TransportationFactory airportFactory;
-   private ArrayList<Airport> airportList;
-   private ArrayList<Airline> airlineList;
+   private ArrayList<Transport> airportList;
+   private ArrayList<Company> airlineList;
 
    public SystemManager()
    {
-      this.airportList = new ArrayList<Airport>();
-      this.airlineList = new ArrayList<Airline>();
+      this.airportList = new ArrayList<Transport>();
+      this.airlineList = new ArrayList<Company>();
       this.airportFactory = new AirportFactory();
    }
    
    public void createAirport(String code)
    {
-      this.airportFactory.createTransport(code);
+      if(noAirportDuplicate(airportList, code))
+      {
+         Transport airport = this.airportFactory.createTransport(code);
+
+         if(airport == null)
+         {
+            System.out.println("Request Error : Airport name has to be Three Characters long.");
+         }
+         else
+         {
+            airportList.add(airport);
+         }
+      }
+      else
+      {
+         System.out.println("Request Error : Airport Name ["+code+"] Already Exists.");
+      }
+   }
+
+   private boolean noAirportDuplicate(ArrayList<Transport> list, String code)
+   {
+      boolean res = true;
+
+      for(Transport tp : list)
+      {
+         if(tp.getName().equals(code))
+         {
+            res = false;
+            break;
+         }
+      }
+
+      return res;
    }
    
    public void createAirline(String name)
    {
-      this.airportFactory.createCompany(name);
+      if(noAirlineDuplicate(airlineList, name))
+      {
+         Company comp = this.airportFactory.createCompany(name);
+
+         if(comp == null)
+         {
+            System.out.println("Request Error : Airline name has to be One to Five Characters long.");
+         }
+         else
+         {
+            airlineList.add(comp);
+         }
+      }
+      else
+      {
+         System.out.println("Request Error: Airline Name ["+name+"] Already Exists.");
+      }
+   }
+
+   private boolean noAirlineDuplicate(ArrayList<Company> list, String name)
+   {
+      boolean res = true;
+
+      for(Company cmp : list)
+      {
+         if(cmp.getName().equals(name))
+         {
+            res = false;
+            break;
+         }
+      }
+
+      return res;
    }
    
    public void createFlight(String company, String depart, String destination, int year, int month, int day, String ticketID)
