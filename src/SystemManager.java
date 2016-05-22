@@ -86,10 +86,62 @@ public class SystemManager
 
       return res;
    }
+
+   private int findCompanyIndex(String name)
+   {
+      int res = -1;
+
+      for(Company cmp : this.airlineList)
+      {
+         res++;
+         if(cmp.getName().equals(name))
+         {
+            break;
+         }
+      }
+
+      return res;
+   }
    
    public void createFlight(String company, String depart, String destination, int year, int month, int day, String ticketID)
    {
-      this.airportFactory.createPath(company, depart, destination, year, month, day, ticketID);
+      if(hasAirline(company))
+      {
+         if(hasAirport(depart))
+         {
+            if(hasAirport(destination))
+            {
+               if(year > 0)
+               {
+                  if(month >= 1 && month <= 12)
+                  {
+                     // Sorry but we need to Advance not Enhance. So, I will be making Day cap to be 31.
+                     if(day >= 1 && day <= 31)
+                     {
+                        if(airlineList.get(findCompanyIndex(company)).idExist(ticketID) == false)
+                        {
+                           airlineList.get(findCompanyIndex(company)).addPath(this.airportFactory.createPath(company, depart, destination, year, month, day, ticketID));
+                        }
+                        else
+                           System.out.println("Request Error: ID ["+ticketID+"] already Exists.");
+                     }
+                     else
+                        System.out.println("Request Error: Day ["+year+"] is not valid.");
+                  }
+                  else
+                     System.out.println("Request Error: Month ["+month+"] is not valid.");
+               }
+               else
+                  System.out.println("Request Error: Year ["+year+"] is not valid.");
+            }
+            else
+               System.out.println("Request Error: Airport Name ["+destination+"] Doesn't Exists.");
+         }
+         else
+            System.out.println("Request Error: Airport Name ["+depart+"] Doesn't Exists.");
+      }
+      else
+         System.out.println("Request Error: Airline Name ["+company+"] Doesn't Exists.");
    }
    
    public void createSection(String airline, String flightID, int row, int col, String seatClass)

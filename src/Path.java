@@ -18,4 +18,9 @@ public abstract class Path
         this.day = day;
         this.ticketID = ticketID;
     }
+
+    public String getID()
+    {
+        return this.ticketID;
+    }
 }
