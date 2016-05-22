@@ -1,10 +1,10 @@
 public class Seat 
 {
    private int row;
-   private char col;
+   private String col;
    private boolean isBooked;
    
-   public Seat(int row, char col)
+   public Seat(int row, String col)
    {
       this.row = row;
       this.col = col;
