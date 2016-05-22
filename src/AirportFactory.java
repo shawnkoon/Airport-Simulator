@@ -1,4 +1,4 @@
-public class AirportFactory implements TransportationFactory
+public class AirportFactory implements TransportationFactoryV2
 {
     public AirportFactory()
     {
@@ -40,8 +40,4 @@ public class AirportFactory implements TransportationFactory
     {
         return new Flight(company, depart, destination, year, month, day, ticketID);
     }
-
-    public void displaySystemDetails() { }
-
-    public void findAvailableSeats(String depart, String destination) { }
 }
