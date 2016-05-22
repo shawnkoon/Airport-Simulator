@@ -23,7 +23,7 @@ public class SystemManager
       this.airportFactory.createCompany(name);
    }
    
-   private void createFlight(String company, String depart, String destination, int year, int month, int day, String ticketID)
+   public void createFlight(String company, String depart, String destination, int year, int month, int day, String ticketID)
    {
       this.airportFactory.createPath(company, depart, destination, year, month, day, ticketID);
    }
