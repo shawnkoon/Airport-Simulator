@@ -15,8 +15,8 @@ public class Flight extends Path
         return super.getDestination();
     }
 
-    @Override
-    public String toString()
+
+    public String printInfo()
     {
         String output = "\tCOMPANY\t\tDEPARTURE\t\tDESTINATION\t\tYEAR\t\tMONTH\t\tDAY\t\tTICKET ID\n\n"
                       + "\t" + super.getCompany() + "\t\t" + super.getDeparture() + "\t\t\t\t" + super.getDestination()
