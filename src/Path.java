@@ -24,23 +24,34 @@ public abstract class Path
         this.sections = new ArrayList<Section>();
     }
 
-    public boolean hasSection(String sectionName)
+    protected String getCompany()
     {
-        boolean res = false;
+        return this.company;
+    }
 
-        if(sections.size() == 0)
-            return res;
+    protected int getDay()
+    {
+        return this.day;
+    }
 
-        for(Section section : sections)
-        {
-            if(section.getSeatClass().equals(sectionName))
-            {
-                res = true;
-                break;
-            }
-        }
+    protected String getDeparture()
+    {
+        return this.departure;
+    }
 
-        return res;
+    protected String getDestination()
+    {
+        return this.destination;
+    }
+
+    protected String getID()
+    {
+        return this.ticketID;
+    }
+
+    protected int getMonth()
+    {
+        return this.month;
     }
 
     public Section getSection(String seatClass)
@@ -63,44 +74,35 @@ public abstract class Path
         return currentSection;
     }
 
-    public void addSection(Section newSection)
-    {
-        this.sections.add(newSection);
-    }
-
-    protected String getID()
-    {
-        return this.ticketID;
-    }
-
-    protected String getCompany()
-    {
-        return this.company;
-    }
-
-    protected String getDeparture()
-    {
-        return this.departure;
-    }
-
-    protected String getDestination()
-    {
-        return this.destination;
-    }
-
     protected int getYear()
     {
         return this.year;
     }
 
-    protected int getMonth()
+    protected void addSection(Section newSection)
     {
-        return this.month;
+        this.sections.add(newSection);
     }
 
-    protected int getDay()
+    protected boolean hasSection(String sectionName)
     {
-        return this.day;
+        boolean result = false;
+
+        if(sections.size() == 0)
+        {
+            return result;
+        }
+
+        for(Section section : sections)
+        {
+            if(section.getSeatClass().equals(sectionName))
+            {
+                result = true;
+                break;
+            }
+        }
+
+        return result;
     }
 
     @Override

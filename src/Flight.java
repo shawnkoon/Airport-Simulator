@@ -19,9 +19,9 @@ public class Flight extends Path
     public String printInfo()
     {
         String output = "\tCOMPANY\t\tDEPARTURE\t\tDESTINATION\t\tYEAR\t\tMONTH\t\tDAY\t\tTICKET ID\n\n"
-                      + "\t" + super.getCompany() + "\t\t" + super.getDeparture() + "\t\t\t\t" + super.getDestination()
-                      + "\t\t\t\t" + super.getYear() + "\t\t" + super.getMonth() + "\t\t\t" + super.getDay() + "\t\t"
-                      + super.getID();
+                + "\t" + super.getCompany() + "\t\t" + super.getDeparture() + "\t\t\t\t" + super.getDestination()
+                + "\t\t\t\t" + super.getYear() + "\t\t" + super.getMonth() + "\t\t\t" + super.getDay() + "\t\t"
+                + super.getID();
 
         return output;
     }

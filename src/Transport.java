@@ -1,5 +1,4 @@
-public abstract class Transport
-{
+public abstract class Transport {
     private String name;
 
     public Transport(String name)

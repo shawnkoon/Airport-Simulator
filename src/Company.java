@@ -3,32 +3,29 @@ import java.util.ArrayList;
 public abstract class Company
 {
     private String name;
-    private ArrayList<Path> instances;
+    private ArrayList<Path> pathList;
 
     public Company(String name)
     {
         this.name = name;
-        instances = new ArrayList<Path>();
+        this.pathList = new ArrayList<Path>();
     }
 
-    public String getName()
+    protected String getName()
     {
         return this.name;
     }
 
-    public void addPath(Path newPath)
-    {
-        instances.add(newPath);
-    }
-
-    public Path getPath(String id)
+    protected Path getPath(String id)
     {
         Path res = null;
 
-        if(instances.size() == 0)
+        if(this.pathList.size() == 0)
+        {
             return res;
+        }
 
-        for(Path path : instances)
+        for(Path path : pathList)
         {
             if(path.getID().equals(id))
             {
@@ -40,14 +37,26 @@ public abstract class Company
         return res;
     }
 
-    public boolean idExist(String id)
+    protected ArrayList<Path> getPathList()
+    {
+        return this.pathList;
+    }
+
+    protected void addPath(Path newPath)
+    {
+        this.pathList.add(newPath);
+    }
+
+    protected boolean idExist(String id)
     {
         boolean res = false;
 
-        if(instances.size() == 0)
+        if(this.pathList.size() == 0)
+        {
             return res;
+        }
 
-        for(Path path : instances)
+        for(Path path : pathList)
         {
             if(path.getID().equals(id))
             {
@@ -57,10 +66,5 @@ public abstract class Company
         }
 
         return res;
-    }
-
-    public ArrayList<Path> getInstances()
-    {
-        return this.instances;
     }
 }

@@ -10,7 +10,7 @@ public abstract class Section
     private int totalSeats;
     private ArrayList<Seat> seatList;
 
-    public Section (String company, String ticketID, int row, int col, String seatClass)
+    public Section(String company, String ticketID, int row, int col, String seatClass)
     {
         this.company = company;
         this.ticketID = ticketID;
@@ -24,6 +24,17 @@ public abstract class Section
     public String getSeatClass()
     {
         return this.seatClass;
+    }
+
+    public void bookSeat(Seat seat)
+    {
+        this.seatList.add(seat);
+    }
+
+    public boolean hasAvailableSeat()
+    {
+        return (seatList.size() != this.totalSeats);
+
     }
 
     public boolean isSeatAvailable(int row, char col)
@@ -44,16 +55,5 @@ public abstract class Section
 
             return true;
         }
-    }
-
-    public boolean hasAvailableSeat()
-    {
-        return seatList.size() != this.totalSeats;
-
-    }
-
-    public void bookSeat(Seat seat)
-    {
-        this.seatList.add(seat);
     }
 }
