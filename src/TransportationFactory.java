@@ -1,4 +1,4 @@
-public interface TransportationFactoryV2
+public interface TransportationFactory
 {
     //method sig to create a boarding station
     Transport createTransport(String name);
