@@ -244,6 +244,24 @@ public class SystemManager
 
     public void displaySystemDetails()
     {
+        System.out.println("==================== AIRPORTS ====================\n");
 
+        for(Transport airport : airportList)
+        {
+            String name = airport.getName();
+            System.out.println("* " + name);
+        }
+
+        System.out.println("==================================================\n");
+
+        System.out.println("==================== AIRLINES ====================\n");
+
+        for(Company airline : airlineList)
+        {
+            Airline currentAirline = (Airline) airline;
+            System.out.println(currentAirline.toString());
+        }
+
+        System.out.println("==================================================");
     }
 }
