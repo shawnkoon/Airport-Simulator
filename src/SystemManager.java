@@ -2,20 +2,20 @@ import java.util.ArrayList;
 
 public class SystemManager 
 {
-   private TransportationFactory airportFactory;
-   private ArrayList<Transport> airportList;
-   private ArrayList<Company> airlineList;
+    private TransportationFactory airportFactory;
+    private ArrayList<Transport> airportList;
+    private ArrayList<Company> airlineList;
 
-   public SystemManager()
-   {
+    public SystemManager()
+    {
       this.airportList = new ArrayList<Transport>();
       this.airlineList = new ArrayList<Company>();
 
       this.airportFactory = new AirportFactory();
-   }
-   
-   public void createAirport(String code)
-   {
+    }
+
+    public void createAirport(String code)
+    {
       if(hasAirport(code) == false)
       {
          Transport airport = this.airportFactory.createTransport(code);
@@ -33,10 +33,10 @@ public class SystemManager
       {
          System.out.println("Request Error : Airport Name ["+code+"] Already Exists.");
       }
-   }
+    }
 
-   private boolean hasAirport(String code)
-   {
+    private boolean hasAirport(String code)
+    {
       boolean res = false;
 
       if(this.airportList.size() == 0)
@@ -52,10 +52,10 @@ public class SystemManager
       }
 
       return res;
-   }
-   
-   public void createAirline(String name)
-   {
+    }
+
+    public void createAirline(String name)
+    {
       if(hasAirline(name) == false)
       {
          Company comp = this.airportFactory.createCompany(name);
@@ -73,10 +73,10 @@ public class SystemManager
       {
          System.out.println("Request Error: Airline Name ["+name+"] Already Exists.");
       }
-   }
+    }
 
-   private boolean hasAirline(String name)
-   {
+    private boolean hasAirline(String name)
+    {
       boolean res = false;
 
       if(this.airlineList.size() == 0)
@@ -92,10 +92,10 @@ public class SystemManager
       }
 
       return res;
-   }
+    }
 
-   private int findCompanyIndex(String name)
-   {
+    private int findCompanyIndex(String name)
+    {
       int res = -1;
 
       if(this.airlineList.size() == 0)
@@ -111,10 +111,10 @@ public class SystemManager
       }
 
       return res;
-   }
-   
-   public void createFlight(String company, String depart, String destination, int year, int month, int day, String ticketID)
-   {
+    }
+
+    public void createFlight(String company, String depart, String destination, int year, int month, int day, String ticketID)
+    {
       if(hasAirline(company))
       {
          if(hasAirport(depart))
@@ -152,10 +152,10 @@ public class SystemManager
       }
       else
          System.out.println("Request Error: Airline Name ["+company+"] Doesn't Exists.");
-   }
-   
-   public void createSection(String airline, String flightID, int row, int col, SeatClass seatClass)
-   {
+    }
+
+    public void createSection(String airline, String flightID, int row, int col, SeatClass seatClass)
+    {
 
       if(hasAirline(airline))
       {
@@ -179,10 +179,10 @@ public class SystemManager
       {
          System.out.println("Request Error: Airline Name ["+airline+"] Doesn't Exists.");
       }
-   }
-   
-   public void findAvailableFlights(String departure, String destination)
-   {
+    }
+
+    public void findAvailableFlights(String departure, String destination)
+    {
       if(hasAirport(departure) && hasAirport(destination))
       {
          for(Company airLine : this.airlineList)
@@ -203,15 +203,47 @@ public class SystemManager
       {
         System.out.println("No available flights from " + departure.toUpperCase() + " to " + destination.toUpperCase());
       }
-   }
-   
-   public void bookSeat(String airline, String flight, Seat seat, int row, String col)
-   {
-      /*Airline air = airlineList.get(airline);*/
-   }
-   
-   public void displaySystemDetails()
-   {
-      
-   }
+    }
+
+    public void bookSeat(String airline, String flightID, SeatClass seatClass, int row, char col)
+    {
+        if(hasAirline(airline))
+        {
+            if(airlineList.get(findCompanyIndex(airline)).idExist(flightID))
+            {
+                Path currentPath = airlineList.get(findCompanyIndex(airline)).getPath(flightID);
+
+                if(currentPath.hasSection(seatClass.toString()))
+                {
+                    if(currentPath.getSection(seatClass.toString()).isSeatAvailable(row, col))
+                    {
+                        Section currentSection = currentPath.getSection(seatClass.toString());
+
+                        currentSection.bookSeat(this.airportFactory.createSeat(row, col));
+                    }
+                    else
+                    {
+                        System.out.println("The seat is currently unavailable.");
+                    }
+                }
+                else
+                {
+                    System.out.println("The section does not exist.");
+                }
+            }
+            else
+            {
+                System.out.println("No matching flight ID found.");
+            }
+        }
+        else
+        {
+            System.out.println("No such flight exists.");
+        }
+    }
+
+    public void displaySystemDetails()
+    {
+
+    }
 }

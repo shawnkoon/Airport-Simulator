@@ -43,6 +43,26 @@ public abstract class Path
         return res;
     }
 
+    public Section getSection(String seatClass)
+    {
+        Section currentSection = null;
+
+        if(sections.size() == 0)
+        {
+            return currentSection;
+        }
+
+        for(Section section : sections)
+        {
+            if(section.getSeatClass().equals(seatClass))
+            {
+                return section;
+            }
+        }
+
+        return currentSection;
+    }
+
     public void addSection(Section newSection)
     {
         this.sections.add(newSection);

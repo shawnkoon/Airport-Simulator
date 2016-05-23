@@ -40,4 +40,9 @@ public class AirportFactory implements TransportationFactory
     {
         return new Flight(company, depart, destination, year, month, day, ticketID);
     }
+
+    public Seat createSeat(int row, char col)
+    {
+        return new Seat(row, col);
+    }
 }
