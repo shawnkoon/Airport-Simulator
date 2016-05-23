@@ -36,4 +36,9 @@ public abstract class Company
 
         return res;
     }
+
+    public ArrayList<Path> getInstances()
+    {
+        return this.instances;
+    }
 }
