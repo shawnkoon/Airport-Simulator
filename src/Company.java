@@ -21,9 +21,31 @@ public abstract class Company
         instances.add(newPath);
     }
 
+    public Path getPath(String id)
+    {
+        Path res = null;
+
+        if(instances.size() == 0)
+            return res;
+
+        for(Path path : instances)
+        {
+            if(path.getID().equals(id))
+            {
+                res = path;
+                break;
+            }
+        }
+
+        return res;
+    }
+
     public boolean idExist(String id)
     {
         boolean res = false;
+
+        if(instances.size() == 0)
+            return res;
 
         for(Path path : instances)
         {

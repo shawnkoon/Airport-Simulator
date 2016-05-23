@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 public abstract class Path
 {
     private String company;
@@ -7,6 +9,7 @@ public abstract class Path
     private int month;
     private int day;
     private String ticketID;
+    private ArrayList<Section> sections;
 
     public Path(String company, String departure, String destination, int year, int month, int day, String ticketID)
     {
@@ -17,6 +20,32 @@ public abstract class Path
         this.month = month;
         this.day = day;
         this.ticketID = ticketID;
+
+        this.sections = new ArrayList<Section>();
+    }
+
+    public boolean hasSection(String sectionName)
+    {
+        boolean res = false;
+
+        if(sections.size() == 0)
+            return res;
+
+        for(Section section : sections)
+        {
+            if(section.getSeatClass().equals(sectionName))
+            {
+                res = true;
+                break;
+            }
+        }
+
+        return res;
+    }
+
+    public void addSection(Section newSection)
+    {
+        this.sections.add(newSection);
     }
 
     protected String getID()
