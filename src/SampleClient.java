@@ -25,5 +25,7 @@ public class SampleClient {
         res.createFlight("DELTA", "LON33", "DEN33", 2013, 5, 7, "123");//invalid airports
         res.createFlight("AMER", "DEN", "LON", 2010, 40, 100, "123abc");//invalid date
 
+        res.findAvailableFlights("DEN", "LON");
+
     }
 }
