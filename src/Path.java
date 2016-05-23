@@ -102,4 +102,10 @@ public abstract class Path
     {
         return this.day;
     }
+
+    @Override
+    public String toString()
+    {
+        return "\t" + this.getCompany() + "\t\t" + this.getDeparture() + "\t\t\t\t" + this.getDestination();
+    }
 }
