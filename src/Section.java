@@ -14,4 +14,9 @@ public abstract class Section
         this.col = col;
         this.seatClass = seatClass;
     }
+
+    public String getSeatClass()
+    {
+        return this.seatClass;
+    }
 }

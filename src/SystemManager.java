@@ -39,6 +39,9 @@ public class SystemManager
    {
       boolean res = false;
 
+      if(this.airportList.size() == 0)
+         return res;
+
       for(Transport tp : this.airportList)
       {
          if(tp.getName().equals(code))
@@ -76,6 +79,9 @@ public class SystemManager
    {
       boolean res = false;
 
+      if(this.airlineList.size() == 0)
+         return res;
+
       for(Company cmp : this.airlineList)
       {
          if(cmp.getName().equals(name))
@@ -91,6 +97,9 @@ public class SystemManager
    private int findCompanyIndex(String name)
    {
       int res = -1;
+
+      if(this.airlineList.size() == 0)
+         return res;
 
       for(Company cmp : this.airlineList)
       {
@@ -145,9 +154,31 @@ public class SystemManager
          System.out.println("Request Error: Airline Name ["+company+"] Doesn't Exists.");
    }
    
-   public void createSection(String airline, String flightID, int row, int col, String seatClass)
+   public void createSection(String airline, String flightID, int row, int col, SeatClass seatClass)
    {
-      this.airportFactory.createSection(airline, flightID, row, col, seatClass);
+
+      if(hasAirline(airline))
+      {
+         if(airlineList.get(findCompanyIndex(airline)).idExist(flightID))
+         {
+            if(airlineList.get(findCompanyIndex(airline)).getPath(flightID).hasSection(seatClass.toString()) == false)
+            {
+               airlineList.get(findCompanyIndex(airline)).getPath(flightID).addSection(this.airportFactory.createSection(airline, flightID, row, col, seatClass.toString()));
+            }
+            else
+            {
+               System.out.println("Request Error: Seat Class ["+seatClass+"] Already Exists.");
+            }
+         }
+         else
+         {
+            System.out.println("Request Error: ID ["+flightID+"] Doesn't Exists.");
+         }
+      }
+      else
+      {
+         System.out.println("Request Error: Airline Name ["+airline+"] Doesn't Exists.");
+      }
    }
    
    public void findAvailableFlights(String departure, String destination)
@@ -162,7 +193,7 @@ public class SystemManager
              {
                  if (flight.getDeparture().equals(departure) && flight.getDestination().equals(destination))
                  {
-                     System.out.println("==================== AVAILABLE FLIGHT ====================\n" + flight.toString());
+                     System.out.println("==================== AVAILABLE FLIGHT ====================\n" + ((Flight)flight).printInfo());
                      System.out.println("\n==========================================================\n");
                  }
              }
