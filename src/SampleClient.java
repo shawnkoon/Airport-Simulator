@@ -41,8 +41,9 @@ public class SampleClient {
         res.createSection("DELTA", "567abc", 2, 2, SeatClass.economy);
         res.createSection("AMER", "12", 9, 9, SeatClass.first);//Invalid ID.
 
+        System.out.println("\n=====About to print Available Flights.=====\n");
 
-        //res.findAvailableFlights("DEN", "LON");
+        res.findAvailableFlights("DEN", "LON");
 
 
     }
