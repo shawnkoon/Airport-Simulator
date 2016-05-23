@@ -223,22 +223,22 @@ public class SystemManager
                     }
                     else
                     {
-                        System.out.println("The seat is currently unavailable.");
+                        System.out.println("Request Error: The Seat ["+row+","+col+"] is currently Unavailable.");
                     }
                 }
                 else
                 {
-                    System.out.println("The section does not exist.");
+                    System.out.println("Request Error: Seat Class ["+seatClass+"] Doesn't Exists.");
                 }
             }
             else
             {
-                System.out.println("No matching flight ID found.");
+                System.out.println("Request Error: ID ["+flightID+"] Doesn't Exists.");
             }
         }
         else
         {
-            System.out.println("No such flight exists.");
+            System.out.println("Request Error: Airline Name ["+airline+"] Doesn't Exists.");
         }
     }
 
