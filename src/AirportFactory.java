@@ -1,4 +1,4 @@
-public class AirportFactory implements TransportationFactoryV2
+public class AirportFactory implements TransportationFactory
 {
     public AirportFactory()
     {
