@@ -183,26 +183,33 @@ public class SystemManager
 
     public void findAvailableFlights(String departure, String destination)
     {
-      if(hasAirport(departure) && hasAirport(destination))
-      {
-         for(Company airLine : this.airlineList)
-         {
-             ArrayList<Path> flightList = airLine.getInstances();
+        boolean selectAll = false;
 
-             for(Path flight : flightList)
-             {
-                 if (flight.getDeparture().equals(departure) && flight.getDestination().equals(destination))
-                 {
-                     System.out.println("==================== AVAILABLE FLIGHT ====================\n" + ((Flight)flight).printInfo());
-                     System.out.println("\n==========================================================\n");
-                 }
-             }
-         }
-      }
-      else
-      {
-        System.out.println("No available flights from " + departure.toUpperCase() + " to " + destination.toUpperCase());
-      }
+        if(departure.equals("*") && destination.equals("*"))
+        {
+            selectAll = true;
+        }
+
+        if (( hasAirport(departure) && hasAirport(destination) ) || selectAll == true)
+        {
+            for (Company airLine : this.airlineList)
+            {
+                ArrayList<Path> flightList = airLine.getInstances();
+
+                for (Path flight : flightList)
+                {
+                    if ((flight.getDeparture().equals(departure) && flight.getDestination().equals(destination)) || selectAll == true)
+                    {
+                        System.out.println("==================== AVAILABLE FLIGHT ====================\n" + ((Flight) flight).printInfo());
+                        System.out.println("\n==========================================================\n");
+                    }
+                }
+            }
+        }
+        else
+        {
+            System.out.println("No available flights from " + departure.toUpperCase() + " to " + destination.toUpperCase());
+        }
     }
 
     public void bookSeat(String airline, String flightID, SeatClass seatClass, int row, char col)
@@ -262,6 +269,8 @@ public class SystemManager
             System.out.println(currentAirline.toString());
         }
 
-        System.out.println("==================================================");
+        System.out.println("==================================================\n");
+
+        this.findAvailableFlights("*", "*");
     }
 }
