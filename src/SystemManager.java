@@ -152,17 +152,15 @@ public class SystemManager
    
    public void findAvailableFlights(String departure, String destination)
    {
-      /*if(hasAirport(departure) && hasAirport(destination))
+      if(hasAirport(departure) && hasAirport(destination))
       {
-         for(Transport airPort : this.airportList)
+         for(Company airLine : this.airlineList)
          {
-             ArrayList<Path> flights = new ArrayList<Path>();
+             ArrayList<Path> flightList = airLine.getInstances();
 
-             flights = airPort.getPaths();
-
-             for(Path flight : flights)
+             for(Path flight : flightList)
              {
-                 if (flight.getDeparture() == departure && flight.getDestination() == destination)
+                 if (flight.getDeparture().equals(departure) && flight.getDestination().equals(destination))
                  {
                      System.out.println("Available flight: " + flight.toString());
                  }
@@ -172,7 +170,7 @@ public class SystemManager
       else
       {
         System.out.println("No available flights from " + departure.toUpperCase() + " to " + destination.toUpperCase());
-      }*/
+      }
    }
    
    public void bookSeat(String airline, String flight, Seat seat, int row, String col)
