@@ -2,7 +2,7 @@ import java.util.ArrayList;
 
 public class SystemManager 
 {
-   private TransportationFactoryV2 airportFactory;
+   private TransportationFactory airportFactory;
    private ArrayList<Transport> airportList;
    private ArrayList<Company> airlineList;
 
@@ -162,7 +162,8 @@ public class SystemManager
              {
                  if (flight.getDeparture().equals(departure) && flight.getDestination().equals(destination))
                  {
-                     System.out.println("Available flight: " + flight.toString());
+                     System.out.println("==================== AVAILABLE FLIGHT ====================\n" + flight.toString());
+                     System.out.println("\n==========================================================\n");
                  }
              }
          }
