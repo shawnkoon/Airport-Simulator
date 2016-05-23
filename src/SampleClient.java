@@ -45,7 +45,7 @@ public class SampleClient {
 
         res.findAvailableFlights("DEN", "LON");
 
-        System.out.println("\n=====About to book some seatZ.=====\n");
+        System.out.println("\n=====About to book some seats.=====\n");
 
         res.bookSeat("DELTA", "123", SeatClass.first, 1, 'A');
         res.bookSeat("DELTA", "123", SeatClass.economy, 1, 'A');
