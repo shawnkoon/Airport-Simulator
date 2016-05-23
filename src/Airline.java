@@ -8,11 +8,11 @@ public class Airline extends Company
     @Override
     public String toString()
     {
-        String output = "\tCOMPANY\t\tDEPARTURE\t\tDESTINATION\n";
+        String output = "";
 
-        for(Path path : super.getInstances())
+        for(Path path : super.getPathList())
         {
-            output += path.toString() + "\n\n";
+            output += path.toString() + "\n\t----------------------------------------\n";
         }
 
         return output;

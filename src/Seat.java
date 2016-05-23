@@ -1,9 +1,9 @@
-public class Seat 
+public class Seat
 {
    private int row;
    private char col;
    private boolean isBooked;
-   
+
    public Seat(int row, char col)
    {
       this.row = row;
@@ -11,14 +11,14 @@ public class Seat
       this.isBooked = false;
    }
 
-   public boolean isBooked()
+   public boolean getBookStatus()
    {
       return this.isBooked;
    }
-   
-   public void setBookedStatus(boolean flag)
+
+   public char getCol()
    {
-      this.isBooked = flag;
+      return this.col;
    }
 
    public int getRow()
@@ -26,8 +26,8 @@ public class Seat
       return this.row;
    }
 
-   public char getCol()
+   public void setBookedStatus(boolean flag)
    {
-      return this.col;
+      this.isBooked = flag;
    }
 }
