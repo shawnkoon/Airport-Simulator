@@ -19,18 +19,38 @@ public abstract class Path
         this.ticketID = ticketID;
     }
 
-    public String getID()
+    protected String getID()
     {
         return this.ticketID;
     }
 
-    public String getDeparture()
+    protected String getCompany()
+    {
+        return this.company;
+    }
+
+    protected String getDeparture()
     {
         return this.departure;
     }
 
-    public String getDestination()
+    protected String getDestination()
     {
         return this.destination;
+    }
+
+    protected int getYear()
+    {
+        return this.year;
+    }
+
+    protected int getMonth()
+    {
+        return this.month;
+    }
+
+    protected int getDay()
+    {
+        return this.day;
     }
 }
