@@ -21,23 +21,23 @@ public abstract class Section
         this.seatList = new ArrayList<Seat>();
     }
 
-    public String getSeatClass()
+    protected String getSeatClass()
     {
         return this.seatClass;
     }
 
-    public void bookSeat(Seat seat)
+    protected void bookSeat(Seat seat)
     {
         this.seatList.add(seat);
     }
 
-    public boolean hasAvailableSeat()
+    protected boolean hasAvailableSeat()
     {
         return (seatList.size() != this.totalSeats);
 
     }
 
-    public boolean isSeatAvailable(int row, char col)
+    protected boolean isSeatAvailable(int row, char col)
     {
         if(hasAvailableSeat() == false)
         {
