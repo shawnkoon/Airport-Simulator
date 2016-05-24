@@ -1,3 +1,5 @@
+import java.time.YearMonth;
+
 public class SampleClient {
     public static void main(String[] args)
     {
@@ -21,11 +23,12 @@ public class SampleClient {
 
         System.out.println("\n=====About to create Flights.=====\n");
 
-        res.createFlight("DELTA", "DEN", "LON", 2013, 10, 10, "123");
+        res.createFlight("DELTA", "DEN", "LON", 2016, 10, 10, "123");
         res.createFlight("DELTA", "DEN", "LON", 2012, 1, 20, "123");//invalid id.
-        res.createFlight("DELTA", "DEN", "DFW", 2013, 8, 8, "567abc");
+        res.createFlight("DELTA", "DEN", "DFW", 2016, 8, 8, "567abc");
         res.createFlight("FRONT", "DFW", "DEN", 2011, 10, 10, "123");
-        res.createFlight("AMER", "DEN", "LON", 2013, 10, 10, "123");
+        res.createFlight("AMER", "DEN", "LON", 2016, 2, 15, "123");
+        res.createFlight("AMER", "DEN", "LON", 2016, 2, 30, "12322");
         res.createFlight("DEL", "DEN", "LON", 2013, 9, 8, "567"); //invalid airline
         res.createFlight("DELTA", "LON33", "DEN33", 2013, 5, 7, "123");//invalid airports
         res.createFlight("AMER", "DEN", "LON", 2010, 40, 100, "123abc");//invalid date
