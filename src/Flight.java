@@ -5,17 +5,6 @@ public class Flight extends Path
         super(company, depart, destination, year, month, day, ticketID);
     }
 
-    public String getDeparture()
-    {
-        return super.getDeparture();
-    }
-
-    public String getDestination()
-    {
-        return super.getDestination();
-    }
-
-
     public String printInfo()
     {
         String output = "\tCOMPANY\t\tDEPARTURE\t\tDESTINATION\t\tYEAR\t\tMONTH\t\tDAY\t\tTICKET ID\n\n"
