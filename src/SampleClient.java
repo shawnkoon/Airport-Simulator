@@ -1,4 +1,12 @@
-import java.time.YearMonth;
+/*
+ * Airport-Simulator V1.0.0
+ * Java 1.8 SDK required
+ * TEAM PROJECT by (ABC order):
+ *
+ * C H
+ * K S
+ *
+ */
 
 public class SampleClient {
     public static void main(String[] args)
