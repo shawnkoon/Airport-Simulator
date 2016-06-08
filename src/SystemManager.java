@@ -365,6 +365,8 @@ public class SystemManager
                         {
                             currentSection.bookSeat(this.airportFactory.createSeat(1, 'A'));
                         }
+
+                        System.out.println("Booked!");
                     }
                     else
                     {
