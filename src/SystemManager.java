@@ -115,14 +115,17 @@ public class SystemManager
             if(s[0].equals("E"))
             {
                 // call createSection with "SeatClass.economy"
+                this.createSection(airline_name, flightID, s[2].charAt(0), Integer.parseInt(s[3]) ,SeatClass.economy);
             }
             else if(s[0].equals("B"))
             {
                 // call createSection with "SeatClass.business"
+                this.createSection(airline_name, flightID, s[2].charAt(0), Integer.parseInt(s[3]) ,SeatClass.business);
             }
             else if(s[0].equals("F"))
             {
                 // call createSection with "SeatClass.first"
+                this.createSection(airline_name, flightID, s[2].charAt(0), Integer.parseInt(s[3]) ,SeatClass.first);
             }
         }
 
@@ -550,7 +553,6 @@ public class SystemManager
             {
                 if(airlineList.get(findCompanyIndex(airline)).getPath(flightID).hasSection(seatClass.toString()) == false)
                 {
-                    this.airportFactory.createSection2(airline, flightID, layout, row, seatClass.toString());
                     airlineList.get(findCompanyIndex(airline)).getPath(flightID).addSection(this.airportFactory.createSection2(airline, flightID, layout, row, seatClass.toString()));
                 }
                 else
