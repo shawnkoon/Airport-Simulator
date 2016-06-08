@@ -21,15 +21,15 @@ public abstract class Section
         this.totalSeats = row * col;
         this.seatList = new ArrayList<Seat>();
 
-        if(col <= Layout.SMALL.ordinal())
+        if(col <= Layout.SMALL.getValue())
         {
             this.layout = 's';
         }
-        else if(col > Layout.SMALL.ordinal() && col <= Layout.MEDIUM.ordinal())
+        else if(col > Layout.SMALL.getValue() && col <= Layout.MEDIUM.getValue())
         {
             this.layout = 'm';
         }
-        else if(col > Layout.MEDIUM.ordinal() && col <= Layout.WIDE.ordinal())
+        else if(col > Layout.MEDIUM.getValue() && col <= Layout.WIDE.getValue())
         {
             this.layout = 'w';
         }
@@ -86,18 +86,20 @@ public abstract class Section
         {
             for(Seat seat : seatList)
             {
-                if(seat.getCol() <= Layout.SMALL.ordinal())
+                if(seat.getCol() <= Layout.SMALL.getValue())
                 {
                     if(seat.getCol() == 1 && preference.toLowerCase().equals("window"))
                     {
                         return true;
                     }
-                    else if(seat.getCol() == Layout.SMALL.ordinal() && preference.toLowerCase().equals("aisle"))
+                    else if(seat.getCol() == Layout.SMALL.getValue() && preference.toLowerCase().equals("aisle"))
                     {
                         return true;
                     }
                 }
             }
+
+            return true;
         }
 
         return false;
@@ -118,16 +120,63 @@ public abstract class Section
         {
             for(Seat seat : seatList)
             {
-                if(seat.getCol() <= Layout.SMALL.ordinal())
+                if(seat.getCol() <= Layout.SMALL.getValue())
                 {
-                    if(seat.getCol() == 1 && preference.toLowerCase().equals("window"))
+                    if((seat.getCol() == 1 || seat.getCol() == Layout.SMALL.getValue()) && preference.toLowerCase().equals("window"))
                     {
                         result[0] = seat.getRow();
                         result[1] = seat.getCol();
 
                         return result;
                     }
-                    else if(seat.getCol() == Layout.SMALL.ordinal() && preference.toLowerCase().equals("aisle"))
+                    else if((seat.getCol() == Layout.SMALL.getValue()-1 || seat.getCol() == Layout.SMALL.getValue()) && preference.toLowerCase().equals("aisle"))
+                    {
+                        result[0] = seat.getRow();
+                        result[1] = seat.getCol();
+
+                        return result;
+                    }
+                }
+            }
+        }
+        else if(this.layout == 'm')
+        {
+            for(Seat seat : seatList)
+            {
+                if(seat.getCol() <= Layout.MEDIUM.getValue())
+                {
+                    if((seat.getCol() == 1 || seat.getCol() == Layout.MEDIUM.getValue()) && preference.toLowerCase().equals("window"))
+                    {
+                        result[0] = seat.getRow();
+                        result[1] = seat.getCol();
+
+                        return result;
+                    }
+                    else if((seat.getCol() == Layout.MEDIUM.getValue()-2 || seat.getCol() == Layout.MEDIUM.getValue()-1) && preference.toLowerCase().equals("aisle"))
+                    {
+                        result[0] = seat.getRow();
+                        result[1] = seat.getCol();
+
+                        return result;
+                    }
+                }
+            }
+        }
+        else if(this.layout == 'w')
+        {
+            for(Seat seat : seatList)
+            {
+                if(seat.getCol() <= Layout.WIDE.getValue())
+                {
+                    if((seat.getCol() == 1 || seat.getCol() == Layout.WIDE.getValue()) && preference.toLowerCase().equals("window"))
+                    {
+                        result[0] = seat.getRow();
+                        result[1] = seat.getCol();
+
+                        return result;
+                    }
+                    else if((seat.getCol() == Layout.WIDE.getValue()-7 || seat.getCol() == Layout.WIDE.getValue()-6 ||
+                             seat.getCol() == Layout.WIDE.getValue()-3 || seat.getCol() == Layout.WIDE.getValue()-2) && preference.toLowerCase().equals("aisle"))
                     {
                         result[0] = seat.getRow();
                         result[1] = seat.getCol();

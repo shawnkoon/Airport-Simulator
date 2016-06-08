@@ -7,6 +7,11 @@ public enum Layout
 
     private final int result;
 
+    public int getValue()
+    {
+        return this.result;
+    }
+
     Layout(int value)
     {
         this.result = value;

@@ -32,6 +32,28 @@ public class BoatFactory implements TransportationFactory
         return new FlightSection(company, ticketID, row, col, seatClass);
     }
 
+    public Section createSection2(String company, String ticketID, char layout, int row, String seatClass)
+    {
+        layout = Character.toLowerCase(layout);
+
+        if(layout == 's')
+        {
+            return new FlightSection(company, ticketID, row, Layout.SMALL.ordinal(), seatClass);
+        }
+        else if(layout == 'm')
+        {
+            return new FlightSection(company, ticketID, row, Layout.MEDIUM.ordinal(), seatClass);
+        }
+        else if(layout == 'w')
+        {
+            return new FlightSection(company, ticketID, row, Layout.WIDE.ordinal(), seatClass);
+        }
+        else
+        {
+            return new FlightSection(company, ticketID, row, Layout.EMPTY.ordinal(), seatClass);
+        }
+    }
+
     public Transport createTransport(String name)
     {
         if(name.length() == 3)

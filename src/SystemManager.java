@@ -117,6 +117,7 @@ public class SystemManager
                 {
                     if(currentPath.getSection(seatClass.toString()).isPreferenceAvailable(preference))
                     {
+
                         Section currentSection = currentPath.getSection(seatClass.toString());
 
                         int[] opening = currentPath.getSection(seatClass.toString()).getAvailablePreference(preference);
@@ -127,7 +128,7 @@ public class SystemManager
                         }
                         else
                         {
-                            System.out.println("The seat is currently unavailable.");
+                            currentSection.bookSeat(this.airportFactory.createSeat(1, 'A'));
                         }
                     }
                     else
@@ -323,6 +324,36 @@ public class SystemManager
             System.out.println("Request Error: Airline Name [" + airline + "] Doesn't Exists.");
         }
     }
+
+    public void createSection(String airline, String flightID, char layout, int row, SeatClass seatClass)
+    {
+        layout = Character.toLowerCase(layout);
+
+        if(hasAirline(airline))
+        {
+            if(airlineList.get(findCompanyIndex(airline)).idExist(flightID))
+            {
+                if(airlineList.get(findCompanyIndex(airline)).getPath(flightID).hasSection(seatClass.toString()) == false)
+                {
+                    this.airportFactory.createSection2(airline, flightID, layout, row, seatClass.toString());
+                    airlineList.get(findCompanyIndex(airline)).getPath(flightID).addSection(this.airportFactory.createSection2(airline, flightID, layout, row, seatClass.toString()));
+                }
+                else
+                {
+                    System.out.println("Request Error: Seat Class [" + seatClass + "] Already Exists.");
+                }
+            }
+            else
+            {
+                System.out.println("Request Error: ID [" + flightID + "] Doesn't Exists.");
+            }
+        }
+        else
+        {
+            System.out.println("Request Error: Airline Name [" + airline + "] Doesn't Exists.");
+        }
+    }
+
 
     public void displaySystemDetails()
     {
