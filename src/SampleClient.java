@@ -8,9 +8,68 @@
  *
  */
 
+import java.util.*;
+
 public class SampleClient {
     public static void main(String[] args)
     {
+        int choice = 0;
+
+        while(choice != 9)
+        {
+            // 1. Create an airport system by using information provided in an input file.
+            // 2. Change the price associated with seats in a flight section. (What is the difference between #4?)
+            // 3. Query the system for flights with available seats in a given class that leave from a specified airport and arrive
+            //    at specified airport on a particular date. The query operation should list all the available flights found
+            //    and its prices.
+            // 4. Change the seat class pricing for an origin and destination for a given airline. (What is the difference between #2?)
+            // 5. Book a seat given a specific seat on a flight.
+            // 6. Book a seat on a flight given only a seating preference: The program should allow a user to book
+            //    a seat on a particular flight using only a seating preference and a flight class. There will only be
+            //    two seating preferences: Window and Aisle. This booking service will look for an available seat
+            //    in the flight section with the seating preference. If one is found then the seat is booked. If one is
+            //    not found, then the system will book any available seat in the specified section, if any.
+            // 7. Display details of the airport system.
+            // 8. Store information about the airport system in a specified file.
+            // 9. Quit.
+
+            choice = showMenu();
+            if(choice == 1)
+            {
+
+            }
+            else if(choice == 2)
+            {
+
+            }
+            else if(choice == 3)
+            {
+
+            }
+            else if(choice == 4)
+            {
+
+            }
+            else if(choice == 5)
+            {
+
+            }
+            else if(choice == 6)
+            {
+
+            }
+            else if(choice == 7)
+            {
+
+            }
+            else if(choice == 8)
+            {
+
+            }
+
+        }
+        System.out.println("===================================================\n");
+
         SystemManager res = new SystemManager();
 
         System.out.println("=====About to create Airports.=====\n");
@@ -78,5 +137,45 @@ public class SampleClient {
         res.displaySystemDetails();
 
         System.out.println("\n\n" + Layout.SMALL.getValue());
+    }
+
+    public static int showMenu()
+    {
+        int choice = 0;
+        Scanner kb = new Scanner(System.in);
+
+        while(choice < 1 || choice > 9)
+        {
+            System.out.println("===================================================\n");
+            System.out.println("Options.");
+            System.out.println("1. Create an airport FROM File.");
+            System.out.println("2. Change the price associated with seats in a flight section.");
+            System.out.println("3. Query Flights With Available Seats.");
+            System.out.println("4. Change the Seat class price of path in Airline.");
+            System.out.println("5. Book a seat on a flight.");
+            System.out.println("6. Book a seat on a flight by seat preference.");
+            System.out.println("7. Display Detailed Airport System.");
+            System.out.println("8. Save information about the Airport System in a specified file.");
+            System.out.println("9. Quit.\n");
+            System.out.print("Please Enter your choice : ");
+
+            try
+            {
+                choice = kb.nextInt();
+            }
+            catch (Exception e)
+            {
+                System.out.println("Error : Please Type an Integer.");
+                choice = 0;
+            }
+
+            kb.nextLine();
+
+            if(choice < 1 || choice > 9)
+            {
+                System.out.println("Error : Type a Number between 1 and 9.");
+            }
+        }
+        return choice;
     }
 }
