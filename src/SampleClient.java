@@ -43,7 +43,88 @@ public class SampleClient {
             }
             else if(choice == 2)
             {
+                System.out.println("\nPlease choose a Seat Class to update:\n\t1. ECONOMY\n\t2. FIRST\n\t3. BUSINESS\n\t4. QUIT");
+                System.out.print("Please enter your choice : ");
 
+                boolean check = false;
+
+                int result = -1;
+
+                while(check == false)
+                {
+                    try
+                    {
+                        Scanner kb = new Scanner(System.in);
+                        result = kb.nextInt();
+
+                        if(result >= 1 && result <= 4)
+                        {
+                            check = true;
+                        }
+                    }
+                    catch(Exception e)
+                    {
+
+                    }
+
+                    if(check == false)
+                    {
+                        System.out.print("Please enter a number between [1-3] : ");
+                    }
+                }
+
+                if(result != 4)
+                {
+                    String seatClass = "";
+                    double seatPrice = 0.0;
+
+                    switch(result)
+                    {
+                        case 1:
+                            seatClass = "ECONOMY";
+                        break;
+                        case 2:
+                            seatClass = "FIRST";
+                        break;
+                        case 3:
+                            seatClass = "BUSINESS";
+                        break;
+                    }
+
+                    check = false;
+
+                    while(check == false)
+                    {
+                        System.out.print("\nPlease enter a new price or Q to quit : ");
+
+                        try
+                        {
+                            Scanner kb = new Scanner(System.in);
+                            String price = kb.nextLine();
+
+                            if(!price.toUpperCase().equals("Q"))
+                            {
+                                seatPrice = Double.parseDouble(price);
+                                check = true;
+                            }
+                            else
+                            {
+                                check = true;
+                            }
+
+                        }
+                        catch(Exception e)
+                        {
+
+                        }
+                    }
+
+                    if(!seatClass.equals("") && seatPrice != 0.0)
+                    {
+                        res.changePriceSeats(seatClass, seatPrice);
+                        System.out.println("Prices for Seat Classes [" + seatClass + "] have been updated to: $" + seatPrice);
+                    }
+                }
             }
             else if(choice == 3)
             {
