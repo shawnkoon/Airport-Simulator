@@ -109,8 +109,18 @@ public class SystemManager
     public void createSection(String airline_name, String flightID, String sectionList)
     {
         String[] sectionInfo = sectionList.split(",");
-        for(String section : sectionInfo)
+        for(String sectioninfo : sectionInfo)
         {
+            String section;
+            if(sectioninfo.charAt(0) == ' ')
+            {
+                section = sectioninfo.substring(1, sectioninfo.length());
+            }
+            else
+            {
+                section = sectioninfo;
+            }
+
             String[] s = section.split(":"); // break up. ex) E , 200(price), S(layout), 4(max rowz)
             if(s[0].equals("E"))
             {

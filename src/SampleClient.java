@@ -8,6 +8,7 @@
  *
  */
 
+import java.io.File;
 import java.util.*;
 
 public class SampleClient {
@@ -38,7 +39,7 @@ public class SampleClient {
             choice = showMenu();
             if(choice == 1)
             {
-
+                readFromFile(res);
             }
             else if(choice == 2)
             {
@@ -284,5 +285,17 @@ public class SampleClient {
             }
         }
         return choice;
+    }
+
+    public static void readFromFile(SystemManager res)
+    {
+        Scanner kb = new Scanner(System.in);
+
+        System.out.print("\nPlease Enter the FileName to import information From : ");
+        String filename = kb.nextLine();
+        
+        res.readFile(filename);
+
+        System.out.println("\nFinished.");
     }
 }
