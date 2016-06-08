@@ -74,6 +74,11 @@ public abstract class Path
         return currentSection;
     }
 
+    public ArrayList<Section> getSections()
+    {
+        return this.sections;
+    }
+
     protected int getYear()
     {
         return this.year;
