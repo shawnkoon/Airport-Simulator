@@ -20,7 +20,7 @@ public class SystemManager
 
         this.utility = new UtilManager();
         
-        readFile("src/airportInput.txt");
+
     }
 
     public void readFile(String filename)

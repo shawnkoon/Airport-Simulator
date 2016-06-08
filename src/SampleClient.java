@@ -15,6 +15,8 @@ public class SampleClient {
     {
         int choice = 0;
 
+        SystemManager res = new SystemManager();
+
         while(choice != 9)
         {
             // 1. Create an airport system by using information provided in an input file.
@@ -70,6 +72,8 @@ public class SampleClient {
         }
         System.out.println("===================================================\n");
 
+
+        /**********************  PART 1 *********************
         SystemManager res = new SystemManager();
 
         System.out.println("=====About to create Airports.=====\n");
@@ -239,6 +243,7 @@ public class SampleClient {
         res.displaySystemDetails();
 
         System.out.println("\n\n" + Layout.SMALL.getValue());
+         */
     }
 
     public static int showMenu()
