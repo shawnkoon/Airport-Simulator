@@ -9,6 +9,8 @@ public abstract class Section
     private char layout;
     private String seatClass;
     private int totalSeats;
+    private double price;
+
     private ArrayList<Seat> seatList;
 
     public Section(String company, String ticketID, int row, int col, String seatClass)
@@ -20,6 +22,35 @@ public abstract class Section
         this.seatClass = seatClass;
         this.totalSeats = row * col;
         this.seatList = new ArrayList<Seat>();
+
+        if(col <= Layout.SMALL.getValue())
+        {
+            this.layout = 's';
+        }
+        else if(col > Layout.SMALL.getValue() && col <= Layout.MEDIUM.getValue())
+        {
+            this.layout = 'm';
+        }
+        else if(col > Layout.MEDIUM.getValue() && col <= Layout.WIDE.getValue())
+        {
+            this.layout = 'w';
+        }
+        else
+        {
+            this.layout = 'e';
+        }
+    }
+
+    public Section(String company, String ticketID, int row, int col, String seatClass, double price)
+    {
+        this.company = company;
+        this.ticketID = ticketID;
+        this.row = row;
+        this.col = col;
+        this.seatClass = seatClass;
+        this.totalSeats = row * col;
+        this.seatList = new ArrayList<Seat>();
+        this.price = price;
 
         if(col <= Layout.SMALL.getValue())
         {
