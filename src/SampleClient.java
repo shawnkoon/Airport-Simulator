@@ -18,7 +18,7 @@ public class SampleClient {
 
         SystemManager res = new SystemManager();
 
-        while(choice != 9)
+        /*while(choice != 9)
         {
             // 1. Create an airport system by using information provided in an input file.
             // 2. Change the price associated with seats in a flight section. (What is the difference between #4?)
@@ -71,11 +71,7 @@ public class SampleClient {
             }
 
         }
-        System.out.println("===================================================\n");
-
-
-        /**********************  PART 1 *********************
-        SystemManager res = new SystemManager();
+        System.out.println("===================================================\n");*/
 
         System.out.println("=====About to create Airports.=====\n");
 
@@ -98,7 +94,7 @@ public class SampleClient {
         res.createFlight("DELTA", "DEN", "LON", 2016, 10, 10, "123");
         res.createFlight("DELTA", "DEN", "LON", 2012, 1, 20, "123");//invalid id.
         res.createFlight("DELTA", "DEN", "DFW", 2016, 8, 8, "567abc");
-        res.createFlight("FRONT", "DFW", "DEN", 2011, 10, 10, "123");
+        res.createFlight("FRONT", "DFW", "DEN", 2016, 10, 10, "123");
         res.createFlight("AMER", "DEN", "LON", 2016, 2, 15, "123");
         res.createFlight("AMER", "DEN", "LON", 2016, 2, 30, "12322");
         res.createFlight("DEL", "DEN", "LON", 2013, 9, 8, "567"); //invalid airline
@@ -244,7 +240,10 @@ public class SampleClient {
         res.displaySystemDetails();
 
         System.out.println("\n\n" + Layout.SMALL.getValue());
-         */
+
+        res.changePriceSeats(SeatClass.economy.toString(), 50000.0);
+
+        res.displaySystemDetails();
     }
 
     public static int showMenu()

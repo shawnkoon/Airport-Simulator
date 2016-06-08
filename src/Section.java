@@ -22,6 +22,7 @@ public abstract class Section
         this.seatClass = seatClass;
         this.totalSeats = row * col;
         this.seatList = new ArrayList<Seat>();
+        this.price = 100.0;
 
         if(col <= Layout.SMALL.getValue())
         {
@@ -498,5 +499,10 @@ public abstract class Section
         }
 
         return result;
+    }
+
+    protected void setPrice(double price)
+    {
+        this.price = price;
     }
 }

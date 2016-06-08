@@ -630,6 +630,29 @@ public class SystemManager
         this.findAvailableFlights("*", "*");
     }
 
+    public void changePriceSeats(String seatClass, double price)
+    {
+        for(Company airLine : this.airlineList)
+        {
+            ArrayList<Path> flightList = airLine.getPathList();
+
+            for(Path flight : flightList)
+            {
+                ArrayList<Section> sectionList = flight.getSections();
+
+                for(Section section : sectionList)
+                {
+                    String currentSeatClass = section.getSeatClass();
+
+                    if(currentSeatClass.equals(seatClass))
+                    {
+                        section.setPrice(price);
+                    }
+                }
+            }
+        }
+    }
+
     private int findCompanyIndex(String name)
     {
         int res = -1;
