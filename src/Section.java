@@ -94,7 +94,7 @@ public abstract class Section
                     {
                         count++;
                     }
-                    else if(this.toInt(seat.getCol()) == Layout.SMALL.getValue() && preference.toLowerCase().equals("aisle"))
+                    else if(( this.toInt(seat.getCol()) == 1 || this.toInt(seat.getCol()) == Layout.SMALL.getValue()-1) && preference.toLowerCase().equals("aisle"))
                     {
                         count++;
                     }
@@ -186,6 +186,38 @@ public abstract class Section
                 }
 
                 for(int c = 1; c <= Layout.SMALL.getValue(); c += 2)
+                {
+                    for(int r = 1; r <= this.row; r++)
+                    {
+                        boolean check = false;
+
+                        for(Seat seat : seatList)
+                        {
+                            if(this.toInt(seat.getCol()) == c && seat.getRow() == r)
+                            {
+                                check = true;
+                            }
+                        }
+
+                        if(check != true)
+                        {
+                            result[0] = r;
+                            result[1] = c;
+
+                            return result;
+                        }
+                    }
+                }
+            }
+            else if(preference.toLowerCase().equals("aisle"))
+            {
+                if(this.seatList.size() < 1)
+                {
+                    result[0] = 1;
+                    result[1] = 1;
+                }
+
+                for(int c = 1; c <= (Layout.SMALL.getValue()-1); c++)
                 {
                     for(int r = 1; r <= this.row; r++)
                     {
@@ -302,7 +334,7 @@ public abstract class Section
             }
         }*/
 
-        for(int c = 1; c < this.col; c++)
+        for(int c = 1; c <= this.col; c++)
         {
             for(int r = 1; r <= this.row; r++)
             {
