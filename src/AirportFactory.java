@@ -22,6 +22,11 @@ public class AirportFactory implements TransportationFactory
         return new Flight(company, depart, destination, year, month, day, ticketID);
     }
 
+    public Path createPath(String company, String depart, String destination, int year, int month, int day, int hour, int min, String ticketID)
+    {
+        return new Flight(company, depart, destination, year, month, day, hour, min, ticketID);
+    }
+
     public Seat createSeat(int row, char col)
     {
         return new Seat(row, col);

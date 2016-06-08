@@ -8,6 +8,8 @@ public abstract class Path
     private int year;
     private int month;
     private int day;
+    private int hour;
+    private int minute;
     private String ticketID;
     private ArrayList<Section> sections;
 
@@ -22,6 +24,72 @@ public abstract class Path
         this.ticketID = ticketID;
 
         this.sections = new ArrayList<Section>();
+    }
+
+    public Path(String company, String departure, String destination, int year, int month, int day, int hour, int min, String ticketID)
+    {
+        this.company = company;
+        this.departure = departure;
+        this.destination = destination;
+        this.year = year;
+        this.month = month;
+        this.day = day;
+        this.hour = hour;
+        this.minute = min;
+        this.ticketID = ticketID;
+
+
+        this.sections = new ArrayList<Section>();
+    }
+
+    public String toFileString()
+    {
+        String res = "";
+
+        res += this.ticketID;
+        res += "|";
+
+        res += this.year;
+        res += ", ";
+
+        res += this.month;
+        res += ", ";
+
+        res += this.day;
+        res += ", ";
+
+        res += this.hour;
+        res += ", ";
+
+        res += this.minute;
+        res += "|";
+
+        res += this.departure;
+        res += "|";
+
+        res += this.destination;
+        res += "[";
+
+        res += printSectionList();
+        res += "]";
+
+        return res;
+    }
+
+    private String printSectionList()
+    {
+        String res = "";
+
+        for(Section section : this.sections)
+        {
+            res += section.toFileString();
+
+            res += ",";
+        }
+
+        res = res.substring(0, res.length() - 1);
+
+        return res;
     }
 
     protected String getCompany()
