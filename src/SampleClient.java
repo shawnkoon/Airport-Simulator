@@ -63,11 +63,11 @@ public class SampleClient {
             }
             else if(choice == 7)
             {
-
+                res.displaySystemDetails();
             }
             else if(choice == 8)
             {
-
+                writeToFile(res);
             }
 
         }
@@ -293,9 +293,15 @@ public class SampleClient {
 
         System.out.print("\nPlease Enter the FileName to import information From : ");
         String filename = kb.nextLine();
-        
+        System.out.println("");
+
         res.readFile(filename);
 
         System.out.println("\nFinished.");
+    }
+
+    public static void writeToFile(SystemManager res)
+    {
+
     }
 }
