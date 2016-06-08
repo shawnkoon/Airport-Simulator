@@ -84,87 +84,86 @@ public class SampleClient {
         System.out.println("M should be full....");
         res.bookSeat("DELTA", "123", SeatClass.first, "aisle");
         res.bookSeat("DELTA", "123", SeatClass.first, "aisle");
-        //col a will be filled
-        res.bookSeat("DELTA", "123", SeatClass.business, "window");
-        res.bookSeat("DELTA", "123", SeatClass.business, "window");
-        res.bookSeat("DELTA", "123", SeatClass.business, "window");
-        res.bookSeat("DELTA", "123", SeatClass.business, "window");
-        res.bookSeat("DELTA", "123", SeatClass.business, "window");
-        res.bookSeat("DELTA", "123", SeatClass.business, "window");
-        res.bookSeat("DELTA", "123", SeatClass.business, "window");
-        //col j will be filled
-        res.bookSeat("DELTA", "123", SeatClass.business, "window");
-        res.bookSeat("DELTA", "123", SeatClass.business, "window");
-        res.bookSeat("DELTA", "123", SeatClass.business, "window");
-        res.bookSeat("DELTA", "123", SeatClass.business, "window");
-        res.bookSeat("DELTA", "123", SeatClass.business, "window");
-        res.bookSeat("DELTA", "123", SeatClass.business, "window");
-        res.bookSeat("DELTA", "123", SeatClass.business, "window");
-        //col b is next available in this section
-        res.bookSeat("DELTA", "123", SeatClass.business, "window");
-        res.bookSeat("DELTA", "123", SeatClass.business, "window");
-        res.bookSeat("DELTA", "123", SeatClass.business, "window");
-        res.bookSeat("DELTA", "123", SeatClass.business, "window");
-        res.bookSeat("DELTA", "123", SeatClass.business, "window");
-        res.bookSeat("DELTA", "123", SeatClass.business, "window");
-        res.bookSeat("DELTA", "123", SeatClass.business, "window");
-        res.bookSeat("DELTA", "123", SeatClass.business, "window");
-        //col c...
-        res.bookSeat("DELTA", "123", SeatClass.business, "window");
-        res.bookSeat("DELTA", "123", SeatClass.business, "window");
-        res.bookSeat("DELTA", "123", SeatClass.business, "window");
-        res.bookSeat("DELTA", "123", SeatClass.business, "window");
-        res.bookSeat("DELTA", "123", SeatClass.business, "window");
-        res.bookSeat("DELTA", "123", SeatClass.business, "window");
-        res.bookSeat("DELTA", "123", SeatClass.business, "window");
-        //col d
-        res.bookSeat("DELTA", "123", SeatClass.business, "window");
-        res.bookSeat("DELTA", "123", SeatClass.business, "window");
-        res.bookSeat("DELTA", "123", SeatClass.business, "window");
-        res.bookSeat("DELTA", "123", SeatClass.business, "window");
-        res.bookSeat("DELTA", "123", SeatClass.business, "window");
-        res.bookSeat("DELTA", "123", SeatClass.business, "window");
-        res.bookSeat("DELTA", "123", SeatClass.business, "window");
+        //col c will be filled
+        res.bookSeat("DELTA", "123", SeatClass.business, "aisle");
+        res.bookSeat("DELTA", "123", SeatClass.business, "aisle");
+        res.bookSeat("DELTA", "123", SeatClass.business, "aisle");
+        res.bookSeat("DELTA", "123", SeatClass.business, "aisle");
+        res.bookSeat("DELTA", "123", SeatClass.business, "aisle");
+        res.bookSeat("DELTA", "123", SeatClass.business, "aisle");
+        res.bookSeat("DELTA", "123", SeatClass.business, "aisle");
+        //col d will be filled
+        res.bookSeat("DELTA", "123", SeatClass.business, "aisle");
+        res.bookSeat("DELTA", "123", SeatClass.business, "aisle");
+        res.bookSeat("DELTA", "123", SeatClass.business, "aisle");
+        res.bookSeat("DELTA", "123", SeatClass.business, "aisle");
+        res.bookSeat("DELTA", "123", SeatClass.business, "aisle");
+        res.bookSeat("DELTA", "123", SeatClass.business, "aisle");
+        res.bookSeat("DELTA", "123", SeatClass.business, "aisle");
+        //col a is next available in this section
+        res.bookSeat("DELTA", "123", SeatClass.business, "aisle");
+        res.bookSeat("DELTA", "123", SeatClass.business, "aisle");
+        res.bookSeat("DELTA", "123", SeatClass.business, "aisle");
+        res.bookSeat("DELTA", "123", SeatClass.business, "aisle");
+        res.bookSeat("DELTA", "123", SeatClass.business, "aisle");
+        res.bookSeat("DELTA", "123", SeatClass.business, "aisle");
+        res.bookSeat("DELTA", "123", SeatClass.business, "aisle");
+        //col b...
+        res.bookSeat("DELTA", "123", SeatClass.business, "aisle");
+        res.bookSeat("DELTA", "123", SeatClass.business, "aisle");
+        res.bookSeat("DELTA", "123", SeatClass.business, "aisle");
+        res.bookSeat("DELTA", "123", SeatClass.business, "aisle");
+        res.bookSeat("DELTA", "123", SeatClass.business, "aisle");
+        res.bookSeat("DELTA", "123", SeatClass.business, "aisle");
+        res.bookSeat("DELTA", "123", SeatClass.business, "aisle");
         //col e
-        res.bookSeat("DELTA", "123", SeatClass.business, "window");
-        res.bookSeat("DELTA", "123", SeatClass.business, "window");
-        res.bookSeat("DELTA", "123", SeatClass.business, "window");
-        res.bookSeat("DELTA", "123", SeatClass.business, "window");
-        res.bookSeat("DELTA", "123", SeatClass.business, "window");
-        res.bookSeat("DELTA", "123", SeatClass.business, "window");
-        res.bookSeat("DELTA", "123", SeatClass.business, "window");
+        res.bookSeat("DELTA", "123", SeatClass.business, "aisle");
+        res.bookSeat("DELTA", "123", SeatClass.business, "aisle");
+        res.bookSeat("DELTA", "123", SeatClass.business, "aisle");
+        res.bookSeat("DELTA", "123", SeatClass.business, "aisle");
+        res.bookSeat("DELTA", "123", SeatClass.business, "aisle");
+        res.bookSeat("DELTA", "123", SeatClass.business, "aisle");
+        res.bookSeat("DELTA", "123", SeatClass.business, "aisle");
         //col f
-        res.bookSeat("DELTA", "123", SeatClass.business, "window");
-        res.bookSeat("DELTA", "123", SeatClass.business, "window");
-        res.bookSeat("DELTA", "123", SeatClass.business, "window");
-        res.bookSeat("DELTA", "123", SeatClass.business, "window");
-        res.bookSeat("DELTA", "123", SeatClass.business, "window");
-        res.bookSeat("DELTA", "123", SeatClass.business, "window");
-        res.bookSeat("DELTA", "123", SeatClass.business, "window");
+        res.bookSeat("DELTA", "123", SeatClass.business, "aisle");
+        res.bookSeat("DELTA", "123", SeatClass.business, "aisle");
+        res.bookSeat("DELTA", "123", SeatClass.business, "aisle");
+        res.bookSeat("DELTA", "123", SeatClass.business, "aisle");
+        res.bookSeat("DELTA", "123", SeatClass.business, "aisle");
+        res.bookSeat("DELTA", "123", SeatClass.business, "aisle");
+        res.bookSeat("DELTA", "123", SeatClass.business, "aisle");
         //col g
-        res.bookSeat("DELTA", "123", SeatClass.business, "window");
-        res.bookSeat("DELTA", "123", SeatClass.business, "window");
-        res.bookSeat("DELTA", "123", SeatClass.business, "window");
-        res.bookSeat("DELTA", "123", SeatClass.business, "window");
-        res.bookSeat("DELTA", "123", SeatClass.business, "window");
-        res.bookSeat("DELTA", "123", SeatClass.business, "window");
-        res.bookSeat("DELTA", "123", SeatClass.business, "window");
+        res.bookSeat("DELTA", "123", SeatClass.business, "aisle");
+        res.bookSeat("DELTA", "123", SeatClass.business, "aisle");
+        res.bookSeat("DELTA", "123", SeatClass.business, "aisle");
+        res.bookSeat("DELTA", "123", SeatClass.business, "aisle");
+        res.bookSeat("DELTA", "123", SeatClass.business, "aisle");
+        res.bookSeat("DELTA", "123", SeatClass.business, "aisle");
+        res.bookSeat("DELTA", "123", SeatClass.business, "aisle");
         //col h
-        res.bookSeat("DELTA", "123", SeatClass.business, "window");
-        res.bookSeat("DELTA", "123", SeatClass.business, "window");
-        res.bookSeat("DELTA", "123", SeatClass.business, "window");
-        res.bookSeat("DELTA", "123", SeatClass.business, "window");
-        res.bookSeat("DELTA", "123", SeatClass.business, "window");
-        res.bookSeat("DELTA", "123", SeatClass.business, "window");
-        res.bookSeat("DELTA", "123", SeatClass.business, "window");
+        res.bookSeat("DELTA", "123", SeatClass.business, "aisle");
+        res.bookSeat("DELTA", "123", SeatClass.business, "aisle");
+        res.bookSeat("DELTA", "123", SeatClass.business, "aisle");
+        res.bookSeat("DELTA", "123", SeatClass.business, "aisle");
+        res.bookSeat("DELTA", "123", SeatClass.business, "aisle");
+        res.bookSeat("DELTA", "123", SeatClass.business, "aisle");
+        res.bookSeat("DELTA", "123", SeatClass.business, "aisle");
         //col i
-        res.bookSeat("DELTA", "123", SeatClass.business, "window");
-        res.bookSeat("DELTA", "123", SeatClass.business, "window");
-        res.bookSeat("DELTA", "123", SeatClass.business, "window");
-        res.bookSeat("DELTA", "123", SeatClass.business, "window");
-        res.bookSeat("DELTA", "123", SeatClass.business, "window");
-        res.bookSeat("DELTA", "123", SeatClass.business, "window");
-        res.bookSeat("DELTA", "123", SeatClass.business, "window");
+        res.bookSeat("DELTA", "123", SeatClass.business, "aisle");
+        res.bookSeat("DELTA", "123", SeatClass.business, "aisle");
+        res.bookSeat("DELTA", "123", SeatClass.business, "aisle");
+        res.bookSeat("DELTA", "123", SeatClass.business, "aisle");
+        res.bookSeat("DELTA", "123", SeatClass.business, "aisle");
+        res.bookSeat("DELTA", "123", SeatClass.business, "aisle");
+        res.bookSeat("DELTA", "123", SeatClass.business, "aisle");
+        //col j
+        res.bookSeat("DELTA", "123", SeatClass.business, "aisle");
+        res.bookSeat("DELTA", "123", SeatClass.business, "aisle");
+        res.bookSeat("DELTA", "123", SeatClass.business, "aisle");
+        res.bookSeat("DELTA", "123", SeatClass.business, "aisle");
+        res.bookSeat("DELTA", "123", SeatClass.business, "aisle");
+        res.bookSeat("DELTA", "123", SeatClass.business, "aisle");
+        res.bookSeat("DELTA", "123", SeatClass.business, "aisle");
 
         System.out.println("Layout w should be full......................");
         res.bookSeat("DELTA", "123", SeatClass.business, "window");

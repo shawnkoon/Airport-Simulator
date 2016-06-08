@@ -186,7 +186,7 @@ public abstract class Section
                 }
             }
 
-            int windows = this.row * (Layout.MEDIUM.getValue() - 2);
+            int windows = this.row * (Layout.WIDE.getValue() - 6);
 
             if(count == windows)
             {
