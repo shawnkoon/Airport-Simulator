@@ -32,25 +32,25 @@ public class AirportFactory implements TransportationFactory
         return new FlightSection(company, ticketID, row, col, seatClass);
     }
 
-    public Section createSection2(String company, String ticketID, char layout, int row, String seatClass)
+    public Section createSection2(String company, String ticketID, char layout, int row, String seatClass, double price)
     {
         layout = Character.toLowerCase(layout);
 
         if(layout == 's')
         {
-            return new FlightSection(company, ticketID, row, Layout.SMALL.getValue(), seatClass);
+            return new FlightSection(company, ticketID, row, Layout.SMALL.getValue(), seatClass, price);
         }
         else if(layout == 'm')
         {
-            return new FlightSection(company, ticketID, row, Layout.MEDIUM.getValue(), seatClass);
+            return new FlightSection(company, ticketID, row, Layout.MEDIUM.getValue(), seatClass, price);
         }
         else if(layout == 'w')
         {
-            return new FlightSection(company, ticketID, row, Layout.WIDE.getValue(), seatClass);
+            return new FlightSection(company, ticketID, row, Layout.WIDE.getValue(), seatClass, price);
         }
         else
         {
-            return new FlightSection(company, ticketID, row, Layout.EMPTY.getValue(), seatClass);
+            return new FlightSection(company, ticketID, row, Layout.EMPTY.getValue(), seatClass, price);
         }
     }
 
