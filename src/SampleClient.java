@@ -43,7 +43,8 @@ public class SampleClient {
 
         System.out.println("\n=====About to create Section.=====\n");
 
-        res.createSection("DELTA","123", 2, 2, SeatClass.economy);
+        res.createSection("DELTA","123", 's', 2, SeatClass.economy); //s layout
+        //res.createSection("DELTA","123", 2, 2, SeatClass.economy);
         res.createSection("DELTA","123", 2, 3, SeatClass.first);
         res.createSection("DELTA","123", 2, 3, SeatClass.first);//Invalid seat,
         res.createSection("DELTA","123", 3, 7, SeatClass.business);
@@ -59,8 +60,10 @@ public class SampleClient {
         System.out.println("\n=====About to book some seats.=====\n");
 
         res.bookSeat("DELTA", "123", SeatClass.first, 1, 'A');
-        res.bookSeat("DELTA", "123", SeatClass.economy, 1, 'A');
-        res.bookSeat("DELTA", "123", SeatClass.economy, 1, 'B');
+        //res.bookSeat("DELTA", "123", SeatClass.economy, 1, 'A');
+        res.bookSeat("DELTA", "123", SeatClass.economy, "window");
+        res.bookSeat("DELTA", "123", SeatClass.economy, "aisle");
+        //res.bookSeat("DELTA", "123", SeatClass.economy, 1, 'B');
         res.bookSeat("DELTA888", "123", SeatClass.business, 1, 'A'); //Invalid airline
         res.bookSeat("DELTA", "123haha7", SeatClass.business, 1, 'A'); //Invalid flightId
         res.bookSeat("DELTA", "123", SeatClass.economy, 1, 'A'); //
@@ -68,5 +71,7 @@ public class SampleClient {
         // already booked
 
         res.displaySystemDetails();
+
+        System.out.println("\n\n" + Layout.SMALL.getValue());
     }
 }

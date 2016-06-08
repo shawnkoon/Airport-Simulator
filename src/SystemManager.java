@@ -10,14 +10,16 @@ public class SystemManager
     private TransportationFactory airportFactory;
     private ArrayList<Transport> airportList;
     private ArrayList<Company> airlineList;
+    private FileUtilManager fileManager;
 
     public SystemManager()
     {
         this.airportList = new ArrayList<Transport>();
         this.airlineList = new ArrayList<Company>();
-
         this.airportFactory = new AirportFactory();
 
+        this.fileManager = new FileUtilManager();
+        
         readFile("src/airportInput.txt");
     }
 
@@ -101,6 +103,7 @@ public class SystemManager
 
             createSection(airline_name, ticketID, sectionList);
         }
+
     }
 
     public void createSection(String airline_name, String flightID, String sectionList)          /********* NEED TO WORK ***********/
@@ -248,6 +251,115 @@ public class SystemManager
                     else
                     {
                         System.out.println("The seat is currently unavailable.");
+                    }
+                }
+                else
+                {
+                    System.out.println("The section does not exist.");
+                }
+            }
+            else
+            {
+                System.out.println("No matching flight ID found.");
+            }
+        }
+        else
+        {
+            System.out.println("No such flight exists.");
+        }
+    }
+
+    private char toChar(int col)
+    {
+        char result = 'k';
+
+        switch(col)
+        {
+            case 1:
+                result = 'a';
+            break;
+
+            case 2:
+                result = 'b';
+            break;
+
+            case 3:
+                result = 'c';
+            break;
+
+            case 4:
+                result = 'd';
+            break;
+
+            case 5:
+                result = 'e';
+            break;
+
+            case 6:
+                result = 'f';
+            break;
+
+            case 7:
+                result = 'g';
+            break;
+
+            case 8:
+                result = 'h';
+            break;
+
+            case 9:
+                result = 'i';
+            break;
+
+            case 10:
+                result = 'j';
+            break;
+        }
+
+        return result;
+    }
+
+    public void bookSeat(String airline, String flightID, SeatClass seatClass, String preference)
+    {
+        if(hasAirline(airline))
+        {
+            if(airlineList.get(findCompanyIndex(airline)).idExist(flightID))
+            {
+                Path currentPath = airlineList.get(findCompanyIndex(airline)).getPath(flightID);
+
+                if(currentPath.hasSection(seatClass.toString()))
+                {
+                    if(currentPath.getSection(seatClass.toString()).isPreferenceAvailable(preference))
+                    {
+
+                        Section currentSection = currentPath.getSection(seatClass.toString());
+
+                        int[] opening = currentPath.getSection(seatClass.toString()).getAvailablePreference(preference);
+
+                        if(opening[0] != -1 && opening[1] != -1)
+                        {
+                            currentSection.bookSeat(this.airportFactory.createSeat(opening[0], this.toChar(opening[1])));
+                        }
+                        else
+                        {
+                            currentSection.bookSeat(this.airportFactory.createSeat(1, 'A'));
+                        }
+                    }
+                    else
+                    {
+                        Section currentSection = currentPath.getSection(seatClass.toString());
+
+                        int[] opening = currentPath.getSection(seatClass.toString()).getAvailableSeat();
+
+                        if(opening[0] != -1 && opening[1] != -1)
+                        {
+                            currentSection.bookSeat(this.airportFactory.createSeat(opening[0], this.toChar(opening[1])));
+                            System.out.println("Could not find your preference, but there was an open seat in the section!");
+                        }
+                        else
+                        {
+                            System.out.println("There are no seats available in this section.");
+                        }
                     }
                 }
                 else
@@ -426,6 +538,36 @@ public class SystemManager
             System.out.println("Request Error: Airline Name [" + airline + "] Doesn't Exists.");
         }
     }
+
+    public void createSection(String airline, String flightID, char layout, int row, SeatClass seatClass)
+    {
+        layout = Character.toLowerCase(layout);
+
+        if(hasAirline(airline))
+        {
+            if(airlineList.get(findCompanyIndex(airline)).idExist(flightID))
+            {
+                if(airlineList.get(findCompanyIndex(airline)).getPath(flightID).hasSection(seatClass.toString()) == false)
+                {
+                    this.airportFactory.createSection2(airline, flightID, layout, row, seatClass.toString());
+                    airlineList.get(findCompanyIndex(airline)).getPath(flightID).addSection(this.airportFactory.createSection2(airline, flightID, layout, row, seatClass.toString()));
+                }
+                else
+                {
+                    System.out.println("Request Error: Seat Class [" + seatClass + "] Already Exists.");
+                }
+            }
+            else
+            {
+                System.out.println("Request Error: ID [" + flightID + "] Doesn't Exists.");
+            }
+        }
+        else
+        {
+            System.out.println("Request Error: Airline Name [" + airline + "] Doesn't Exists.");
+        }
+    }
+
 
     public void displaySystemDetails()
     {
