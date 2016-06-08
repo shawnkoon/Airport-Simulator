@@ -18,6 +18,7 @@ public class SampleClient {
 
         SystemManager res = new SystemManager();
 
+/*
         res.createAirport("DEN");
         res.createAirport("DFW");
         res.createAirport("LON");
@@ -184,6 +185,7 @@ public class SampleClient {
         res.changePriceSeats(SeatClass.economy.toString(), 50000.0);
 
         res.displaySystemDetails();
+*/
 
         while(choice != 9)
         {
@@ -646,7 +648,7 @@ public class SampleClient {
             }
             else if(choice == 5)
             {
-
+                bookSeatPrompt(res);
             }
             else if(choice == 6)
             {
@@ -662,180 +664,6 @@ public class SampleClient {
             }
 
         }
-        /*
-        System.out.println("===================================================\n");
-
-        System.out.println("=====About to create Airports.=====\n");
-
-        res.createAirport("DEN");
-        res.createAirport("DFW");
-        res.createAirport("LON");
-        res.createAirport("DEN");//invalid
-        res.createAirport("DENW");//invalid
-
-        System.out.println("\n=====About to create Airlines.=====\n");
-
-        res.createAirline("DELTA");
-        res.createAirline("AMER");
-        res.createAirline("FRONT");
-        res.createAirline("FRONTIER"); //invalid
-        res.createAirline("FRONT"); //invalid
-
-        System.out.println("\n=====About to create Flights.=====\n");
-
-        res.createFlight("DELTA", "DEN", "LON", 2016, 10, 10, "123");
-        res.createFlight("DELTA", "DEN", "LON", 2012, 1, 20, "123");//invalid id.
-        res.createFlight("DELTA", "DEN", "DFW", 2016, 8, 8, "567abc");
-        res.createFlight("FRONT", "DFW", "DEN", 2016, 10, 10, "123");
-        res.createFlight("AMER", "DEN", "LON", 2016, 2, 15, "123");
-        res.createFlight("AMER", "DEN", "LON", 2016, 2, 30, "12322");
-        res.createFlight("DEL", "DEN", "LON", 2013, 9, 8, "567"); //invalid airline
-        res.createFlight("DELTA", "LON33", "DEN33", 2013, 5, 7, "123");//invalid airports
-        res.createFlight("AMER", "DEN", "LON", 2010, 40, 100, "123abc");//invalid date
-
-        System.out.println("\n=====About to create Section.=====\n");
-
-        res.createSection("DELTA","123", 's', 2, SeatClass.economy, 100.00); //s layout
-        //res.createSection("DELTA","123", 2, 2, SeatClass.economy);
-        res.createSection("DELTA","123", 'm', 3, SeatClass.first, 250.00);
-        res.createSection("DELTA","123", 2, 3, SeatClass.first);//Invalid seat,
-        res.createSection("DELTA","123", 'w', 7, SeatClass.business, 500.00);
-        res.createSection("SWSERTT","123", 5, 5, SeatClass.economy);//Invalid airline
-        res.createSection("FRONT", "123", 6, 2, SeatClass.economy);
-        res.createSection("DELTA", "567abc", 2, 2, SeatClass.economy);
-        res.createSection("AMER", "12", 9, 9, SeatClass.first);//Invalid ID.
-
-        System.out.println("\n=====About to print Available Flights.=====\n");
-
-        res.findAvailableFlights("DEN", "LON");
-
-        System.out.println("\n=====About to book some seats.=====\n");
-
-        res.bookSeat("DELTA", "123", SeatClass.first, 1, 'A');
-        //res.bookSeat("DELTA", "123", SeatClass.economy, 1, 'A');
-        res.bookSeat("DELTA", "123", SeatClass.economy, "aisle");
-        res.bookSeat("DELTA", "123", SeatClass.economy, "aisle");
-        res.bookSeat("DELTA", "123", SeatClass.economy, "aisle");
-        res.bookSeat("DELTA", "123", SeatClass.economy, "aisle");
-        res.bookSeat("DELTA", "123", SeatClass.economy, "aisle");
-        res.bookSeat("DELTA", "123", SeatClass.economy, "aisle");
-        res.bookSeat("DELTA", "123", SeatClass.economy, "aisle");
-        res.bookSeat("DELTA", "123", SeatClass.economy, "aisle");
-        res.bookSeat("DELTA", "123", SeatClass.economy, "aisle");
-        res.bookSeat("DELTA", "123", SeatClass.first, "aisle");
-        res.bookSeat("DELTA", "123", SeatClass.first, "aisle");
-        res.bookSeat("DELTA", "123", SeatClass.first, "aisle");
-        res.bookSeat("DELTA", "123", SeatClass.first, "aisle");
-        res.bookSeat("DELTA", "123", SeatClass.first, "aisle");
-        res.bookSeat("DELTA", "123", SeatClass.first, "aisle");
-        res.bookSeat("DELTA", "123", SeatClass.first, "aisle");
-        res.bookSeat("DELTA", "123", SeatClass.first, "aisle");
-        res.bookSeat("DELTA", "123", SeatClass.first, "aisle");
-        res.bookSeat("DELTA", "123", SeatClass.first, "aisle");
-        res.bookSeat("DELTA", "123", SeatClass.first, "aisle");
-        System.out.println("M should be full....");
-        res.bookSeat("DELTA", "123", SeatClass.first, "aisle");
-        res.bookSeat("DELTA", "123", SeatClass.first, "aisle");
-        //col c will be filled
-        res.bookSeat("DELTA", "123", SeatClass.business, "aisle");
-        res.bookSeat("DELTA", "123", SeatClass.business, "aisle");
-        res.bookSeat("DELTA", "123", SeatClass.business, "aisle");
-        res.bookSeat("DELTA", "123", SeatClass.business, "aisle");
-        res.bookSeat("DELTA", "123", SeatClass.business, "aisle");
-        res.bookSeat("DELTA", "123", SeatClass.business, "aisle");
-        res.bookSeat("DELTA", "123", SeatClass.business, "aisle");
-        //col d will be filled
-        res.bookSeat("DELTA", "123", SeatClass.business, "aisle");
-        res.bookSeat("DELTA", "123", SeatClass.business, "aisle");
-        res.bookSeat("DELTA", "123", SeatClass.business, "aisle");
-        res.bookSeat("DELTA", "123", SeatClass.business, "aisle");
-        res.bookSeat("DELTA", "123", SeatClass.business, "aisle");
-        res.bookSeat("DELTA", "123", SeatClass.business, "aisle");
-        res.bookSeat("DELTA", "123", SeatClass.business, "aisle");
-        //col a is next available in this section
-        res.bookSeat("DELTA", "123", SeatClass.business, "aisle");
-        res.bookSeat("DELTA", "123", SeatClass.business, "aisle");
-        res.bookSeat("DELTA", "123", SeatClass.business, "aisle");
-        res.bookSeat("DELTA", "123", SeatClass.business, "aisle");
-        res.bookSeat("DELTA", "123", SeatClass.business, "aisle");
-        res.bookSeat("DELTA", "123", SeatClass.business, "aisle");
-        res.bookSeat("DELTA", "123", SeatClass.business, "aisle");
-        //col b...
-        res.bookSeat("DELTA", "123", SeatClass.business, "aisle");
-        res.bookSeat("DELTA", "123", SeatClass.business, "aisle");
-        res.bookSeat("DELTA", "123", SeatClass.business, "aisle");
-        res.bookSeat("DELTA", "123", SeatClass.business, "aisle");
-        res.bookSeat("DELTA", "123", SeatClass.business, "aisle");
-        res.bookSeat("DELTA", "123", SeatClass.business, "aisle");
-        res.bookSeat("DELTA", "123", SeatClass.business, "aisle");
-        //col e
-        res.bookSeat("DELTA", "123", SeatClass.business, "aisle");
-        res.bookSeat("DELTA", "123", SeatClass.business, "aisle");
-        res.bookSeat("DELTA", "123", SeatClass.business, "aisle");
-        res.bookSeat("DELTA", "123", SeatClass.business, "aisle");
-        res.bookSeat("DELTA", "123", SeatClass.business, "aisle");
-        res.bookSeat("DELTA", "123", SeatClass.business, "aisle");
-        res.bookSeat("DELTA", "123", SeatClass.business, "aisle");
-        //col f
-        res.bookSeat("DELTA", "123", SeatClass.business, "aisle");
-        res.bookSeat("DELTA", "123", SeatClass.business, "aisle");
-        res.bookSeat("DELTA", "123", SeatClass.business, "aisle");
-        res.bookSeat("DELTA", "123", SeatClass.business, "aisle");
-        res.bookSeat("DELTA", "123", SeatClass.business, "aisle");
-        res.bookSeat("DELTA", "123", SeatClass.business, "aisle");
-        res.bookSeat("DELTA", "123", SeatClass.business, "aisle");
-        //col g
-        res.bookSeat("DELTA", "123", SeatClass.business, "aisle");
-        res.bookSeat("DELTA", "123", SeatClass.business, "aisle");
-        res.bookSeat("DELTA", "123", SeatClass.business, "aisle");
-        res.bookSeat("DELTA", "123", SeatClass.business, "aisle");
-        res.bookSeat("DELTA", "123", SeatClass.business, "aisle");
-        res.bookSeat("DELTA", "123", SeatClass.business, "aisle");
-        res.bookSeat("DELTA", "123", SeatClass.business, "aisle");
-        //col h
-        res.bookSeat("DELTA", "123", SeatClass.business, "aisle");
-        res.bookSeat("DELTA", "123", SeatClass.business, "aisle");
-        res.bookSeat("DELTA", "123", SeatClass.business, "aisle");
-        res.bookSeat("DELTA", "123", SeatClass.business, "aisle");
-        res.bookSeat("DELTA", "123", SeatClass.business, "aisle");
-        res.bookSeat("DELTA", "123", SeatClass.business, "aisle");
-        res.bookSeat("DELTA", "123", SeatClass.business, "aisle");
-        //col i
-        res.bookSeat("DELTA", "123", SeatClass.business, "aisle");
-        res.bookSeat("DELTA", "123", SeatClass.business, "aisle");
-        res.bookSeat("DELTA", "123", SeatClass.business, "aisle");
-        res.bookSeat("DELTA", "123", SeatClass.business, "aisle");
-        res.bookSeat("DELTA", "123", SeatClass.business, "aisle");
-        res.bookSeat("DELTA", "123", SeatClass.business, "aisle");
-        res.bookSeat("DELTA", "123", SeatClass.business, "aisle");
-        //col j
-        res.bookSeat("DELTA", "123", SeatClass.business, "aisle");
-        res.bookSeat("DELTA", "123", SeatClass.business, "aisle");
-        res.bookSeat("DELTA", "123", SeatClass.business, "aisle");
-        res.bookSeat("DELTA", "123", SeatClass.business, "aisle");
-        res.bookSeat("DELTA", "123", SeatClass.business, "aisle");
-        res.bookSeat("DELTA", "123", SeatClass.business, "aisle");
-        res.bookSeat("DELTA", "123", SeatClass.business, "aisle");
-
-        System.out.println("Layout w should be full......................");
-        res.bookSeat("DELTA", "123", SeatClass.business, "window");
-        res.bookSeat("DELTA", "123", SeatClass.business, "window");
-
-
-        //res.bookSeat("DELTA", "123", SeatClass.economy, 1, 'B');
-        res.bookSeat("DELTA888", "123", SeatClass.business, 1, 'A'); //Invalid airline
-        res.bookSeat("DELTA", "123haha7", SeatClass.business, 1, 'A'); //Invalid flightId
-        //res.bookSeat("DELTA", "123", SeatClass.economy, 1, 'A'); //
-
-        // already booked
-
-        res.displaySystemDetails();
-
-        System.out.println("\n\n" + Layout.SMALL.getValue());
-
-        res.changePriceSeats(SeatClass.economy.toString(), 50000.0);
-
-        res.displaySystemDetails();*/
     }
 
     public static int showMenu()
@@ -876,6 +704,61 @@ public class SampleClient {
             }
         }
         return choice;
+    }
+
+    public static void bookSeatPrompt(SystemManager res)
+    {
+        Scanner kb = new Scanner(System.in);
+
+        System.out.print("\nPlease Enter the Airline Name to Book Seat : ");
+        String airline = kb.nextLine();
+
+        System.out.print("Please Enter the FlightID for that Airline : ");
+        String flightID = kb.nextLine();
+
+        System.out.print("Please Enter the SeatClass < ex) first, business, economy > : ");
+        String seatClass = kb.nextLine().toLowerCase();
+
+        int rowNumb = 0;
+        while(rowNumb < 1)
+        {
+            try
+            {
+                System.out.print("Please Enter the Row Number of the Seat : ");
+                rowNumb = kb.nextInt();
+            }
+            catch (Exception e)
+            {
+                System.out.println("Error : Please Type a Number Greater than 0.\n");
+                rowNumb = 0;
+            }
+            kb.nextLine();
+        }
+
+        System.out.print("Please Enter the Column Character of the Seat : ");
+        String column = kb.nextLine().toUpperCase();
+        char columnChar = column.charAt(0);
+
+        System.out.println("");
+
+        if(seatClass.equals("first"))
+        {
+            res.bookSeat(airline, flightID, SeatClass.first, rowNumb, columnChar);
+        }
+        else if(seatClass.equals("business"))
+        {
+            res.bookSeat(airline, flightID, SeatClass.business, rowNumb, columnChar);
+        }
+        else if(seatClass.equals("economy"))
+        {
+            res.bookSeat(airline, flightID, SeatClass.economy, rowNumb, columnChar);
+        }
+        else
+        {
+            System.out.println("The seatClass ["+seatClass+"] is not valid.");
+        }
+
+        System.out.println("\nFinished.");
     }
 
     public static void readFromFile(SystemManager res)
