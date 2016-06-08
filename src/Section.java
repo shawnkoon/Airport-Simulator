@@ -139,7 +139,34 @@ public abstract class Section
                 return false;
             }
         }
+        else if(this.layout == 'm')
+        {
+            int count = 0;
 
+            for(Seat seat : seatList)
+            {
+                int cstatus = this.toInt(seat.getCol());
+                int rstatus = seat.getRow();
+
+                if(this.toInt(seat.getCol()) <= Layout.MEDIUM.getValue())
+                {
+                    if((this.toInt(seat.getCol()) == 1 || this.toInt(seat.getCol()) == Layout.MEDIUM.getValue()) && preference.toLowerCase().equals("window"))
+                    {
+                        count++;
+                    } else if((this.toInt(seat.getCol()) == Layout.MEDIUM.getValue() - 2 || this.toInt(seat.getCol()) == Layout.MEDIUM.getValue() - 1) && preference.toLowerCase().equals("aisle"))
+                    {
+                        count++;
+                    }
+                }
+            }
+
+            int windows = this.row * (Layout.MEDIUM.getValue() - 2);
+
+            if(count == windows)
+            {
+                return false;
+            }
+        }
         return true;
     }
 
@@ -249,6 +276,73 @@ public abstract class Section
                 }
 
                 for(int c = 1; c <= (Layout.SMALL.getValue()-1); c++)
+                {
+                    for(int r = 1; r <= this.row; r++)
+                    {
+                        boolean check = false;
+
+                        for(Seat seat : seatList)
+                        {
+                            if(this.toInt(seat.getCol()) == c && seat.getRow() == r)
+                            {
+                                check = true;
+                            }
+                        }
+
+                        if(check != true)
+                        {
+                            result[0] = r;
+                            result[1] = c;
+
+                            return result;
+                        }
+                    }
+                }
+            }
+        }
+        else if(this.layout == 'm')
+        {
+            if(preference.toLowerCase().equals("window"))
+            {
+                if(this.seatList.size() < 1)
+                {
+                    result[0] = 1;
+                    result[1] = 1;
+                }
+
+                for(int c = 1; c <= Layout.MEDIUM.getValue(); c += 3)
+                {
+                    for(int r = 1; r <= this.row; r++)
+                    {
+                        boolean check = false;
+
+                        for(Seat seat : seatList)
+                        {
+                            if(this.toInt(seat.getCol()) == c && seat.getRow() == r)
+                            {
+                                check = true;
+                            }
+                        }
+
+                        if(check != true)
+                        {
+                            result[0] = r;
+                            result[1] = c;
+
+                            return result;
+                        }
+                    }
+                }
+            }
+            else if(preference.toLowerCase().equals("aisle"))
+            {
+                if(this.seatList.size() < 1)
+                {
+                    result[0] = 2;
+                    result[1] = 1;
+                }
+
+                for(int c = 2; c <= (Layout.MEDIUM.getValue()-1); c++)
                 {
                     for(int r = 1; r <= this.row; r++)
                     {
