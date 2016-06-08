@@ -1,6 +1,9 @@
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.time.YearMonth;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Scanner;
 
 public class SystemManager
 {
@@ -16,7 +19,218 @@ public class SystemManager
         this.airportFactory = new AirportFactory();
 
         this.fileManager = new FileUtilManager();
+        
+        readFile("src/airportInput.txt");
     }
+
+    public void readFile(String filename)
+    {
+        String AMS;
+
+        ArrayList<String> airport_names = new ArrayList<String>();
+        ArrayList<String> list_of_airlines = new ArrayList<String>();
+        ArrayList<String> airline_names = new ArrayList<String>();
+
+        try
+        {
+            File fopen = new File(filename);
+            Scanner kb = new Scanner(fopen);
+
+            AMS = kb.nextLine(); //[list-of-airport-codes] {list-of-airlines}
+
+            airport_names = extractAirport_names(strip( ( AMS.split("\\]"))[0] )); // ex) DEN, NYC, ...
+            storeAirports(airport_names); // Stores into this.airportList
+
+            list_of_airlines = extractAirLines(AMS.split("\\{")[1].split("\\}")[0]); // ex) AMER[...], UNTD[...] ...
+
+            airline_names = extractAirLine_Names(list_of_airlines); // ex) AMER, UNTD ...
+            storeAirlines(airline_names); // Stores into this.airlineList
+
+            createFlightinfo_List(list_of_airlines);
+
+
+        }
+        catch (FileNotFoundException e)
+        {
+            System.out.println("The File '"+filename+"' was not found.");
+        }
+    }
+
+    public void createFlightinfo_List(ArrayList<String> list) // for each airline, it will try to create flights.
+    {
+        for(String airline : list)
+        {
+            int index = 0;
+            String cleanAirline = "";
+            String airline_name = "";
+
+            for(int i = 0; i < airline.length(); i++)
+            {
+                if(index == 0)
+                {
+                    if(airline.charAt(i) == '[')
+                    {
+                        index = i;
+                        break;
+                    }
+                }
+            }
+            airline_name = airline.substring(0, index);
+            cleanAirline = airline.substring(index + 1, airline.length() - 1);
+
+            ArrayList<String> flights = extractFlightInfo(cleanAirline);
+
+            createFlight(airline_name, flights);
+        }
+    }
+
+    public void createFlight(String airline_name, ArrayList<String> flightString)
+    {
+        for(String flightInfo : flightString) // ex) AA1|2011, 10, 8, 16, 30|DEN|LAX[E:200:S:4,F:500:S:2]
+        {
+            // break flightInfo into := String depart, String destination, int year, int month, int day, String ticketID
+            // then call createFlight() method.
+            String[] s = flightInfo.split("\\|");
+            String depart = s[2];
+            String destination = s[3].split("\\[")[0];
+            int year = Integer.parseInt(s[1].split(", ")[0]);
+            int month = Integer.parseInt(s[1].split(", ")[1]);
+            int day = Integer.parseInt(s[1].split(", ")[2]);
+            String ticketID = s[0];
+            String sectionList =s[3].split("\\[")[1].substring(0,s[3].split("\\[")[1].length() - 1);
+
+            this.createFlight(airline_name, depart, destination, year, month, day, ticketID);
+
+            createSection(airline_name, ticketID, sectionList);
+        }
+
+    }
+
+    public void createSection(String airline_name, String flightID, String sectionList)          /********* NEED TO WORK ***********/
+    {
+        String[] sectionInfo = sectionList.split(",");
+        for(String section : sectionInfo)
+        {
+            String[] s = section.split(":"); // break up. ex) E , 200(price), S(layout), 4(max rowz)
+            if(s[0].equals("E"))
+            {
+                // call createSection with "SeatClass.economy"
+            }
+            else if(s[0].equals("B"))
+            {
+                // call createSection with "SeatClass.business"
+            }
+            else if(s[0].equals("F"))
+            {
+                // call createSection with "SeatClass.first"
+            }
+        }
+
+    }
+
+    public ArrayList<String> extractFlightInfo(String s)
+    {
+        ArrayList<String> res = new ArrayList<String>();
+
+        String[] flights =  s.split("\\], ");
+
+        for(int i = 0; i < flights.length; i++)
+        {
+            if(i < flights.length - 1)
+            {
+                res.add(flights[i] + "]");
+            }
+            else
+            {
+                res.add(flights[i]);
+            }
+        }
+
+
+        return res;
+    }
+
+    public void storeAirlines(ArrayList<String> list)
+    {
+        for(String name : list)
+        {
+            this.createAirline(name);
+        }
+    }
+
+    public void storeAirports(ArrayList<String> list)
+    {
+        for(String code : list)
+        {
+            this.createAirport(code);
+        }
+    }
+
+    public ArrayList<String> extractAirLine_Names(ArrayList<String> list)
+    {
+        ArrayList<String> res = new ArrayList<String>();
+
+        for(String s : list)
+        {
+            res.add(s.split("\\[")[0]);
+        }
+
+        return res;
+    }
+
+    public ArrayList<String> extractAirLines(String string)
+    {
+        String[] s = string.split("\\]\\], ");
+        ArrayList<String> res = new ArrayList<String>();
+
+        for(int i = 0; i < s.length; i++)
+        {
+            if(i < s.length - 1)
+            {
+                res.add(s[i]+"]]");
+            }
+            else
+            {
+                res.add(s[i]);
+            }
+        }
+
+        return res;
+    }
+
+    public ArrayList<String> extractAirport_names(String string)
+    {
+        String[] s = string.split(", ");
+        ArrayList<String> res = new ArrayList<String>();
+
+        for(int i = 0; i < s.length; i++)
+        {
+            res.add(s[i]);
+        }
+
+        return res;
+    }
+
+    // Strips off [,],{,} symbols.
+    public String strip(String messyString)
+    {
+        String res = "";
+
+        for(int i = 0; i < messyString.length(); i++)
+        {
+            if(messyString.charAt(i) == '[' || messyString.charAt(i) == ']' || messyString.charAt(i) == '{' || messyString.charAt(i) == '}')
+            {
+                // do nothing.
+            }
+            else
+            {
+                res += messyString.charAt(i);
+            }
+        }
+
+        return res; // return string without ' [ , ] , { , } '
+    }
+
 
     public void bookSeat(String airline, String flightID, SeatClass seatClass, int row, char col)
     {
