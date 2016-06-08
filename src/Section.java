@@ -167,6 +167,32 @@ public abstract class Section
                 return false;
             }
         }
+        else if(this.layout == 'w')
+        {
+            int count = 0;
+
+            for(Seat seat : seatList)
+            {
+                if(this.toInt(seat.getCol()) <= Layout.WIDE.getValue())
+                {
+                    if((this.toInt(seat.getCol()) == 1 || this.toInt(seat.getCol()) == Layout.WIDE.getValue()) && preference.toLowerCase().equals("window"))
+                    {
+                        count++;
+                    } else if( ((this.toInt(seat.getCol()) == Layout.WIDE.getValue() - 7) || (this.toInt(seat.getCol()) == Layout.WIDE.getValue() - 6) ||
+                            (this.toInt(seat.getCol()) == Layout.WIDE.getValue() - 3) || (this.toInt(seat.getCol()) == Layout.WIDE.getValue() - 2)) && preference.toLowerCase().equals("aisle"))
+                    {
+                        count++;
+                    }
+                }
+            }
+
+            int windows = this.row * (Layout.MEDIUM.getValue() - 2);
+
+            if(count == windows)
+            {
+                return false;
+            }
+        }
         return true;
     }
 
@@ -362,6 +388,76 @@ public abstract class Section
                             result[1] = c;
 
                             return result;
+                        }
+                    }
+                }
+            }
+        }
+        else if(this.layout == 'w')
+        {
+            if(preference.toLowerCase().equals("window"))
+            {
+                if(this.seatList.size() < 1)
+                {
+                    result[0] = 1;
+                    result[1] = 1;
+                }
+
+                for(int c = 1; c <= Layout.WIDE.getValue(); c += 9)
+                {
+                    for(int r = 1; r <= this.row; r++)
+                    {
+                        boolean check = false;
+
+                        for(Seat seat : seatList)
+                        {
+                            if(this.toInt(seat.getCol()) == c && seat.getRow() == r)
+                            {
+                                check = true;
+                            }
+                        }
+
+                        if(check != true)
+                        {
+                            result[0] = r;
+                            result[1] = c;
+
+                            return result;
+                        }
+                    }
+                }
+            }
+            else if(preference.toLowerCase().equals("aisle"))
+            {
+                if(this.seatList.size() < 1)
+                {
+                    result[0] = 3;
+                    result[1] = 1;
+                }
+
+                for(int c = 3; c <= (Layout.WIDE.getValue()-2); c++)
+                {
+                    if(c == 3 || c == Layout.WIDE.getValue() - 6 || c == Layout.WIDE.getValue() - 3 || c == Layout.WIDE.getValue() - 2)
+                    {
+                        for(int r = 1; r <= this.row; r++)
+                        {
+                            boolean check = false;
+
+                            for(Seat seat : seatList)
+                            {
+                                if(this.toInt(seat.getCol()) == c && seat.getRow() == r)
+                                {
+                                    check = true;
+                                }
+                            }
+
+                            if(check != true)
+                            {
+                                result[0] = r;
+                                result[1] = c;
+
+                                return result;
+                            }
                         }
                     }
                 }
