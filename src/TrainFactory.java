@@ -32,7 +32,7 @@ public class TrainFactory implements TransportationFactory
         return new FlightSection(company, ticketID, row, col, seatClass);
     }
 
-    public Section createSection2(String company, String ticketID, char layout, int row, String seatClass)
+    public Section createSection2(String company, String ticketID, char layout, int row, String seatClass, double price)
     {
         layout = Character.toLowerCase(layout);
 

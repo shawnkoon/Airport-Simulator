@@ -106,7 +106,7 @@ public class SystemManager
 
     }
 
-    public void createSection(String airline_name, String flightID, String sectionList)          /********* NEED TO WORK ***********/
+    public void createSection(String airline_name, String flightID, String sectionList)
     {
         String[] sectionInfo = sectionList.split(",");
         for(String section : sectionInfo)
@@ -115,14 +115,17 @@ public class SystemManager
             if(s[0].equals("E"))
             {
                 // call createSection with "SeatClass.economy"
+                this.createSection(airline_name, flightID, s[2].charAt(0), Integer.parseInt(s[3]) ,SeatClass.economy, Double.parseDouble(s[1]));
             }
             else if(s[0].equals("B"))
             {
                 // call createSection with "SeatClass.business"
+                this.createSection(airline_name, flightID, s[2].charAt(0), Integer.parseInt(s[3]) ,SeatClass.business, Double.parseDouble(s[1]));
             }
             else if(s[0].equals("F"))
             {
                 // call createSection with "SeatClass.first"
+                this.createSection(airline_name, flightID, s[2].charAt(0), Integer.parseInt(s[3]) ,SeatClass.first, Double.parseDouble(s[1]));
             }
         }
 
@@ -539,7 +542,7 @@ public class SystemManager
         }
     }
 
-    public void createSection(String airline, String flightID, char layout, int row, SeatClass seatClass)
+    public void createSection(String airline, String flightID, char layout, int row, SeatClass seatClass, double price)
     {
         layout = Character.toLowerCase(layout);
 
@@ -550,7 +553,9 @@ public class SystemManager
                 if(airlineList.get(findCompanyIndex(airline)).getPath(flightID).hasSection(seatClass.toString()) == false)
                 {
                     //this.airportFactory.createSection2(airline, flightID, layout, row, seatClass.toString());
-                    airlineList.get(findCompanyIndex(airline)).getPath(flightID).addSection(this.airportFactory.createSection2(airline, flightID, layout, row, seatClass.toString()));
+                    //airlineList.get(findCompanyIndex(airline)).getPath(flightID).addSection(this.airportFactory.createSection2(airline, flightID, layout, row, seatClass.toString()));
+
+                    airlineList.get(findCompanyIndex(airline)).getPath(flightID).addSection(this.airportFactory.createSection2(airline, flightID, layout, row, seatClass.toString(), price));
                 }
                 else
                 {
