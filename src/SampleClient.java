@@ -302,6 +302,16 @@ public class SampleClient {
 
     public static void writeToFile(SystemManager res)
     {
+        Scanner kb = new Scanner(System.in);
 
+        System.out.print("\nPlease Enter the File name to export : ");
+        String filename = kb.nextLine();
+        System.out.println("");
+
+        // I am overriding the old file if same filename is given.
+
+        res.writeFile(filename);
+
+        System.out.println("\nFinished.");
     }
 }

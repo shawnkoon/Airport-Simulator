@@ -1,5 +1,6 @@
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.PrintStream;
 import java.time.YearMonth;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -19,8 +20,62 @@ public class SystemManager
         this.airportFactory = new AirportFactory();
 
         this.utility = new UtilManager();
-        
+    }
 
+    public void writeFile(String filename)
+    {
+        try
+        {
+            PrintStream fout = new PrintStream(new File(filename));
+
+            fout.print("[");
+            writeAirports(fout);
+            fout.print("]");
+
+            fout.print("{");
+            writeAirlines(fout);
+            fout.print("}");
+        }
+        catch(FileNotFoundException e)
+        {
+            // just stubbed out...
+            // Will never get here.
+        }
+    }
+
+    public void writeAirports(PrintStream fout)
+    {
+        int count = 0;
+
+        for(Transport airport : this.airportList)
+        {
+            count++;
+            if(count == this.airportList.size())
+            {
+                fout.print(airport.getName());
+            }
+            else
+            {
+                fout.print(airport.getName() +", ");
+            }
+        }
+    }
+
+    public void writeAirlines(PrintStream fout)
+    {
+        int count = 0;
+        for(Company airline : this.airlineList)
+        {
+            count++;
+            if(count == this.airlineList.size())
+            {
+                fout.print(airline.toFileString());
+            }
+            else
+            {
+                fout.print(airline.toFileString() + ", ");
+            }
+        }
     }
 
     public void readFile(String filename)
@@ -88,7 +143,7 @@ public class SystemManager
     {
         for(String flightInfo : flightString) // ex) AA1|2011, 10, 8, 16, 30|DEN|LAX[E:200:S:4,F:500:S:2]
         {
-            // break flightInfo into := String depart, String destination, int year, int month, int day, String ticketID
+            // break flightInfo into := String depart, String destination, int year, int month, int day, int hour, int min, String ticketID
             // then call createFlight() method.
             String[] s = flightInfo.split("\\|");
             String depart = s[2];
@@ -96,10 +151,13 @@ public class SystemManager
             int year = Integer.parseInt(s[1].split(", ")[0]);
             int month = Integer.parseInt(s[1].split(", ")[1]);
             int day = Integer.parseInt(s[1].split(", ")[2]);
+            int hour = Integer.parseInt(s[1].split(", ")[3]);
+            int min = Integer.parseInt(s[1].split(", ")[4]);
+
             String ticketID = s[0];
             String sectionList =s[3].split("\\[")[1].substring(0,s[3].split("\\[")[1].length() - 1);
 
-            this.createFlight(airline_name, depart, destination, year, month, day, ticketID);
+            this.createFlight(airline_name, depart, destination, year, month, day, hour, min, ticketID);
 
             createSection(airline_name, ticketID, sectionList);
         }
@@ -488,6 +546,42 @@ public class SystemManager
         }
 
         return res;
+    }
+
+    public void createFlight(String company, String depart, String destination, int year, int month, int day, int hour, int min, String ticketID)
+    {
+        if(hasAirline(company) && hasAirport(depart) && hasAirport(destination))
+        {
+            if(year > 0 && (month >= 1 && month <= 12) && (day >= 1 && day <= 31))
+            {
+                if(hasAirport(destination))
+                {
+                    if(isValidDate(year, month, day))
+                    {
+                        if(airlineList.get(findCompanyIndex(company)).idExist(ticketID) == false)
+                        {
+                            airlineList.get(findCompanyIndex(company)).addPath(this.airportFactory.createPath(company, depart, destination, year, month, day, hour, min, ticketID));
+                        }
+                    }
+                    else
+                    {
+                        System.out.println("Request Error: Date [" + year + "/" + month +"/"+ day +"] is not valid.");
+                    }
+                }
+                else
+                {
+                    System.out.println("Request Error: Airport Name [" + destination + "] Doesn't Exists.");
+                }
+            }
+            else
+            {
+                System.out.println("Request Error: Airport Name [" + depart + "] Doesn't Exists.");
+            }
+        }
+        else
+        {
+            System.out.println("Request Error: Airline Name [" + company + "] Doesn't Exists.");
+        }
     }
 
     public void createFlight(String company, String depart, String destination, int year, int month, int day, String ticketID)

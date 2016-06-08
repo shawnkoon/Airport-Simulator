@@ -4,6 +4,8 @@ public interface TransportationFactory
 
     Path createPath(String company, String depart, String destination, int year, int month, int day, String ticketID);
 
+    Path createPath(String company, String depart, String destination, int year, int month, int day, int hour, int min, String ticketID);
+
     Seat createSeat(int row, char col);
 
     Section createSection(String company, String ticketID, int row, int col, String seatClass);

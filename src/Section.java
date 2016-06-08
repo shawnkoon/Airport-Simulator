@@ -71,6 +71,25 @@ public abstract class Section
         }
     }
 
+    public String toFileString()
+    {
+        String res = "";
+
+        res += this.seatClass.substring(0,1).toUpperCase();
+        res += ":";
+
+        res += this.price;
+        res += ":";
+
+        String layoutString = this.layout+"";
+        res += layoutString.toUpperCase();
+        res += ":";
+
+        res += this.row;
+
+        return res;
+    }
+
     protected String getSeatClass()
     {
         return this.seatClass;
