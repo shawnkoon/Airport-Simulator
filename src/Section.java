@@ -114,12 +114,15 @@ public abstract class Section
 
             for(Seat seat : seatList)
             {
+                int cstatus = this.toInt(seat.getCol());
+                int rstatus = seat.getRow();
+
                 if(this.toInt(seat.getCol()) <= Layout.MEDIUM.getValue())
                 {
                     if((this.toInt(seat.getCol()) == 1 || this.toInt(seat.getCol()) == Layout.MEDIUM.getValue()) && preference.toLowerCase().equals("window"))
                     {
                         count++;
-                    } else if((this.toInt(seat.getCol()) == 1 || this.toInt(seat.getCol()) == Layout.SMALL.getValue() - 1) && preference.toLowerCase().equals("aisle"))
+                    } else if((this.toInt(seat.getCol()) == Layout.MEDIUM.getValue() - 2 || this.toInt(seat.getCol()) == Layout.MEDIUM.getValue() - 1) && preference.toLowerCase().equals("aisle"))
                     {
                         count++;
                     }
@@ -308,7 +311,7 @@ public abstract class Section
                     result[1] = 1;
                 }
 
-                for(int c = 2; c <= (Layout.SMALL.getValue()-2); c++)
+                for(int c = 2; c <= (Layout.MEDIUM.getValue()-1); c++)
                 {
                     for(int r = 1; r <= this.row; r++)
                     {
