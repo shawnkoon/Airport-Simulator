@@ -55,6 +55,56 @@ public class SystemManager
         }
     }
 
+    private char toChar(int col)
+    {
+        char result = 'k';
+
+        switch(col)
+        {
+            case 1:
+                result = 'a';
+            break;
+
+            case 2:
+                result = 'b';
+            break;
+
+            case 3:
+                result = 'c';
+            break;
+
+            case 4:
+                result = 'd';
+            break;
+
+            case 5:
+                result = 'e';
+            break;
+
+            case 6:
+                result = 'f';
+            break;
+
+            case 7:
+                result = 'g';
+            break;
+
+            case 8:
+                result = 'h';
+            break;
+
+            case 9:
+                result = 'i';
+            break;
+
+            case 10:
+                result = 'j';
+            break;
+        }
+
+        return result;
+    }
+
     public void bookSeat(String airline, String flightID, SeatClass seatClass, String preference)
     {
         if(hasAirline(airline))
@@ -69,11 +119,32 @@ public class SystemManager
                     {
                         Section currentSection = currentPath.getSection(seatClass.toString());
 
-                        //currentSection.bookSeat(this.airportFactory.createSeat(row, col));
+                        int[] opening = currentPath.getSection(seatClass.toString()).getAvailablePreference(preference);
+
+                        if(opening[0] != -1 && opening[1] != -1)
+                        {
+                            currentSection.bookSeat(this.airportFactory.createSeat(opening[0], this.toChar(opening[1])));
+                        }
+                        else
+                        {
+                            System.out.println("The seat is currently unavailable.");
+                        }
                     }
                     else
                     {
-                        System.out.println("The seat is currently unavailable.");
+                        Section currentSection = currentPath.getSection(seatClass.toString());
+
+                        int[] opening = currentPath.getSection(seatClass.toString()).getAvailableSeat();
+
+                        if(opening[0] != -1 && opening[1] != -1)
+                        {
+                            currentSection.bookSeat(this.airportFactory.createSeat(opening[0], this.toChar(opening[1])));
+                            System.out.println("Could not find your preference, but there was an open seat in the section!");
+                        }
+                        else
+                        {
+                            System.out.println("There are no seats available in this section.");
+                        }
                     }
                 }
                 else

@@ -102,4 +102,62 @@ public abstract class Section
 
         return false;
     }
+
+    protected int[] getAvailablePreference(String preference)
+    {
+        int[] result = new int[2];
+        result[0] = -1;
+        result[1] = -1;
+
+        if(isPreferenceAvailable(preference) == false)
+        {
+            return result;
+        }
+
+        if(this.layout == 's')
+        {
+            for(Seat seat : seatList)
+            {
+                if(seat.getCol() <= Layout.SMALL.ordinal())
+                {
+                    if(seat.getCol() == 1 && preference.toLowerCase().equals("window"))
+                    {
+                        result[0] = seat.getRow();
+                        result[1] = seat.getCol();
+
+                        return result;
+                    }
+                    else if(seat.getCol() == Layout.SMALL.ordinal() && preference.toLowerCase().equals("aisle"))
+                    {
+                        result[0] = seat.getRow();
+                        result[1] = seat.getCol();
+
+                        return result;
+                    }
+                }
+            }
+        }
+
+        return result;
+    }
+
+    protected int[] getAvailableSeat()
+    {
+        int[] result = new int[2];
+        result[0] = -1;
+        result[1] = -1;
+
+        for(Seat seat : seatList)
+        {
+            if(seat.getBookStatus() == false)
+            {
+                result[0] = seat.getRow();
+                result[1] = seat.getCol();
+
+                return result;
+            }
+        }
+
+        return result;
+    }
 }
