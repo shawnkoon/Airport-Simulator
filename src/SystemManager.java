@@ -340,56 +340,6 @@ public class SystemManager
         }
     }
 
-    /*private char toChar(int col)
-    {
-        char result = 'k';
-
-        switch(col)
-        {
-            case 1:
-                result = 'a';
-            break;
-
-            case 2:
-                result = 'b';
-            break;
-
-            case 3:
-                result = 'c';
-            break;
-
-            case 4:
-                result = 'd';
-            break;
-
-            case 5:
-                result = 'e';
-            break;
-
-            case 6:
-                result = 'f';
-            break;
-
-            case 7:
-                result = 'g';
-            break;
-
-            case 8:
-                result = 'h';
-            break;
-
-            case 9:
-                result = 'i';
-            break;
-
-            case 10:
-                result = 'j';
-            break;
-        }
-
-        return result;
-    }*/
-
     public void bookSeat(String airline, String flightID, SeatClass seatClass, String preference)
     {
         if(hasAirline(airline))
@@ -747,6 +697,35 @@ public class SystemManager
         }
     }
 
+    public void changePriceSeat(String airline, String origin, String destination, String seatClass, double price)
+    {
+        for(Company air : this.airlineList)
+        {
+            if(air.getName().equals(airline))
+            {
+                ArrayList<Path> flightList = air.getPathList();
+
+                for(Path flight : flightList)
+                {
+                    if(flight.getDeparture().equals(origin) && flight.getDestination().equals(destination))
+                    {
+                        ArrayList<Section> sectionList = flight.getSections();
+
+                        for(Section section : sectionList)
+                        {
+                            String currentSeatClass = section.getSeatClass();
+
+                            if(currentSeatClass.equals(seatClass))
+                            {
+                                section.setPrice(price);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
     private int findCompanyIndex(String name)
     {
         int res = -1;
@@ -804,7 +783,51 @@ public class SystemManager
         }
     }
 
-    private boolean hasAirline(String name)
+    public void findAvailableFlights(String departure, String destination, int year, int month, int day, String seatClass)
+    {
+        boolean selectAll = false;
+        int total = 0;
+
+        if (departure.equals("*") && destination.equals("*"))
+        {
+            selectAll = true;
+        }
+
+        if((hasAirport(departure) && hasAirport(destination)) || selectAll == true)
+        {
+            for(Company airLine : this.airlineList)
+            {
+                ArrayList<Path> flightList = airLine.getPathList();
+
+                for(Path flight : flightList)
+                {
+                    if((flight.getDeparture().equals(departure) && flight.getDestination().equals(destination)) && flight.getYear() == year &&
+                            flight.getMonth() == month && flight.getDay() == day || selectAll == true)
+                    {
+                        ArrayList<Section> sectionList = flight.getSections();
+
+                        for(Section section : sectionList)
+                        {
+                            if(section.getSeatClass().equals(seatClass.toLowerCase()) && section.isFull() == false)
+                            {
+                                total++;
+                                System.out.println("==================== AVAILABLE FLIGHT w/ SEAT CLASS=========\n\n" + ((Flight) flight).printInfo());
+                                System.out.println("\n\tSEAT CLASS AVAILABLE: " + seatClass);
+                                System.out.println("\t********************");
+                                System.out.println("\n============================================================\n");
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        else
+        {
+            System.out.println("No available flights from " + departure.toUpperCase() + " to " + destination.toUpperCase());
+        }
+    }
+
+    public boolean hasAirline(String name)
     {
         boolean res = false;
 
@@ -825,7 +848,7 @@ public class SystemManager
         return res;
     }
 
-    private boolean hasAirport(String code)
+    public boolean hasAirport(String code)
     {
         boolean res = false;
 
