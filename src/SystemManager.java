@@ -19,8 +19,6 @@ public class SystemManager
         this.airportFactory = new AirportFactory();
 
         this.fileManager = new FileUtilManager();
-        
-        readFile("src/airportInput.txt");
     }
 
     public void readFile(String filename)
