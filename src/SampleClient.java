@@ -37,6 +37,7 @@ public class SampleClient {
         res.createFlight("DELTA", "DEN", "LON", 2016, 10, 10, "123");
         res.createFlight("DELTA", "DEN", "LON", 2012, 1, 20, "123");//invalid id.
         res.createFlight("DELTA", "DEN", "DFW", 2016, 8, 8, "567abc");
+        res.createFlight("FRONT", "DEN", "LON", 2016, 10, 10, "132");
         res.createFlight("FRONT", "DFW", "DEN", 2016, 10, 10, "123");
         res.createFlight("AMER", "DEN", "LON", 2016, 2, 15, "123");
         res.createFlight("AMER", "DEN", "LON", 2016, 2, 30, "12322");
@@ -47,6 +48,7 @@ public class SampleClient {
         System.out.println("\n=====About to create Section.=====\n");
 
         res.createSection("DELTA","123", 's', 2, SeatClass.economy, 100.00); //s layout
+        res.createSection("FRONT", "132", 's', 2, SeatClass.economy, 100.00);
         //res.createSection("DELTA","123", 2, 2, SeatClass.economy);
         res.createSection("DELTA","123", 'm', 3, SeatClass.first, 250.00);
         res.createSection("DELTA","123", 2, 3, SeatClass.first);//Invalid seat,
@@ -64,11 +66,6 @@ public class SampleClient {
 
         res.bookSeat("DELTA", "123", SeatClass.first, 1, 'A');
         //res.bookSeat("DELTA", "123", SeatClass.economy, 1, 'A');
-        res.bookSeat("DELTA", "123", SeatClass.economy, "aisle");
-        res.bookSeat("DELTA", "123", SeatClass.economy, "aisle");
-        res.bookSeat("DELTA", "123", SeatClass.economy, "aisle");
-        res.bookSeat("DELTA", "123", SeatClass.economy, "aisle");
-        res.bookSeat("DELTA", "123", SeatClass.economy, "aisle");
         res.bookSeat("DELTA", "123", SeatClass.economy, "aisle");
         res.bookSeat("DELTA", "123", SeatClass.economy, "aisle");
         res.bookSeat("DELTA", "123", SeatClass.economy, "aisle");
@@ -298,6 +295,187 @@ public class SampleClient {
             }
             else if(choice == 3)
             {
+                String origin = "";
+                boolean check = false;
+
+
+                while(check == false)
+                {
+                    try
+                    {
+                        Scanner kb = new Scanner(System.in);
+                        System.out.print("Please enter an origin : ");
+                        origin = kb.nextLine();
+
+                        if (res.hasAirport(origin))
+                        {
+                            check = true;
+                        }
+                        else
+                        {
+                            System.out.println("Origin not found!");
+                        }
+                    }
+                    catch(Exception e)
+                    {
+
+                    }
+                }
+
+                String destination = "";
+                check = false;
+
+                while(check == false)
+                {
+                    try
+                    {
+                        Scanner kb = new Scanner(System.in);
+                        System.out.print("Please enter a destination : ");
+                        destination = kb.nextLine();
+
+                        if (res.hasAirport(destination))
+                        {
+                            check = true;
+                        }
+                        else
+                        {
+                            System.out.println("Destination not found!");
+                        }
+                    }
+                    catch(Exception e)
+                    {
+
+                    }
+                }
+
+                int year = -1;
+                check = false;
+
+                while(check == false)
+                {
+                    try
+                    {
+                        Scanner kb = new Scanner(System.in);
+                        System.out.print("Please enter year of departure : ");
+                        year = kb.nextInt();
+
+                        if(year >= 2016)
+                        {
+                            check = true;
+                        }
+                        else
+                        {
+                            System.out.print("Please enter a valid year of departure : ");
+                        }
+                    }
+                    catch(Exception e)
+                    {
+                        System.out.print("Please enter a valid year of departure : ");
+                    }
+                }
+
+                int month = -1;
+                check = false;
+
+                while(check == false)
+                {
+                    try
+                    {
+                        Scanner kb = new Scanner(System.in);
+                        System.out.print("Please enter month of departure : ");
+                        month = kb.nextInt();
+
+                        if(month >= 1 && month <= 12)
+                        {
+                            check = true;
+                        }
+                        else
+                        {
+                            System.out.print("Please enter a valid month of departure : ");
+                        }
+                    }
+                    catch(Exception e)
+                    {
+                        System.out.print("Please enter a valid month of departure : ");
+                    }
+                }
+
+                int day = -1;
+                check = false;
+
+                while(check == false)
+                {
+                    try
+                    {
+                        Scanner kb = new Scanner(System.in);
+                        System.out.print("Please enter day of departure : ");
+                        day = kb.nextInt();
+
+                        if(day >= 1 && day <= 31)
+                        {
+                            check = true;
+                        }
+                        else
+                        {
+                            System.out.print("Please enter a valid day of departure : ");
+                        }
+                    }
+                    catch(Exception e)
+                    {
+                        System.out.print("Please enter a valid day of departure : ");
+                    }
+                }
+
+                System.out.println("\nPlease choose a Seat Class of interest\n\t1. ECONOMY\n\t2. FIRST\n\t3. BUSINESS\n\t4. QUIT");
+                System.out.print("Please enter your choice : ");
+
+                check = false;
+                int result = -1;
+
+                while(check == false)
+                {
+                    try
+                    {
+                        Scanner kb = new Scanner(System.in);
+                        result = kb.nextInt();
+
+                        if(result >= 1 && result <= 4)
+                        {
+                            check = true;
+                        }
+                    }
+                    catch(Exception e)
+                    {
+
+                    }
+
+                    if(check == false)
+                    {
+                        System.out.print("Please enter a number between [1-3] : ");
+                    }
+                }
+
+                if(result != 4)
+                {
+                    String seatClass = "";
+
+                    switch (result) {
+                        case 1:
+                            seatClass = "ECONOMY";
+                            break;
+                        case 2:
+                            seatClass = "FIRST";
+                            break;
+                        case 3:
+                            seatClass = "BUSINESS";
+                            break;
+                    }
+
+                    if(!origin.equals("") && !destination.equals("") && year != -1 && month != -1 && day != -1 && !seatClass.equals(""))
+                    {
+                        res.findAvailableFlights(origin, destination, year, month, day, seatClass);
+                    }
+                }
 
             }
             else if(choice == 4)

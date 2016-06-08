@@ -196,6 +196,12 @@ public abstract class Section
         return true;
     }
 
+    protected boolean isFull()
+    {
+        boolean result = this.totalSeats == this.seatList.size();
+        return result;
+    }
+
     /*private int toInt(char col)
     {
         int result = -1;

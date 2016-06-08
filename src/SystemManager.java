@@ -282,56 +282,6 @@ public class SystemManager
         }
     }
 
-    /*private char toChar(int col)
-    {
-        char result = 'k';
-
-        switch(col)
-        {
-            case 1:
-                result = 'a';
-            break;
-
-            case 2:
-                result = 'b';
-            break;
-
-            case 3:
-                result = 'c';
-            break;
-
-            case 4:
-                result = 'd';
-            break;
-
-            case 5:
-                result = 'e';
-            break;
-
-            case 6:
-                result = 'f';
-            break;
-
-            case 7:
-                result = 'g';
-            break;
-
-            case 8:
-                result = 'h';
-            break;
-
-            case 9:
-                result = 'i';
-            break;
-
-            case 10:
-                result = 'j';
-            break;
-        }
-
-        return result;
-    }*/
-
     public void bookSeat(String airline, String flightID, SeatClass seatClass, String preference)
     {
         if(hasAirline(airline))
@@ -732,6 +682,50 @@ public class SystemManager
             }
 
             System.out.println("Total number of AVAILABLE FLIGHTS: " + total + "\n");
+        }
+        else
+        {
+            System.out.println("No available flights from " + departure.toUpperCase() + " to " + destination.toUpperCase());
+        }
+    }
+
+    public void findAvailableFlights(String departure, String destination, int year, int month, int day, String seatClass)
+    {
+        boolean selectAll = false;
+        int total = 0;
+
+        if (departure.equals("*") && destination.equals("*"))
+        {
+            selectAll = true;
+        }
+
+        if((hasAirport(departure) && hasAirport(destination)) || selectAll == true)
+        {
+            for(Company airLine : this.airlineList)
+            {
+                ArrayList<Path> flightList = airLine.getPathList();
+
+                for(Path flight : flightList)
+                {
+                    if((flight.getDeparture().equals(departure) && flight.getDestination().equals(destination)) && flight.getYear() == year &&
+                            flight.getMonth() == month && flight.getDay() == day || selectAll == true)
+                    {
+                        ArrayList<Section> sectionList = flight.getSections();
+
+                        for(Section section : sectionList)
+                        {
+                            if(section.getSeatClass().equals(seatClass.toLowerCase()) && section.isFull() == false)
+                            {
+                                total++;
+                                System.out.println("==================== AVAILABLE FLIGHT w/ SEAT CLASS=========\n\n" + ((Flight) flight).printInfo());
+                                System.out.println("\n\tSEAT CLASS AVAILABLE: " + seatClass);
+                                System.out.println("\t********************");
+                                System.out.println("\n============================================================\n");
+                            }
+                        }
+                    }
+                }
+            }
         }
         else
         {
