@@ -17,7 +17,7 @@ public class SampleClient {
 
         SystemManager res = new SystemManager();
 
-        /*while(choice != 9)
+        while(choice != 9)
         {
             // 1. Create an airport system by using information provided in an input file.
             // 2. Change the price associated with seats in a flight section. (What is the difference between #4?)
@@ -70,7 +70,8 @@ public class SampleClient {
             }
 
         }
-        System.out.println("===================================================\n");*/
+        /*
+        System.out.println("===================================================\n");
 
         System.out.println("=====About to create Airports.=====\n");
 
@@ -242,7 +243,7 @@ public class SampleClient {
 
         res.changePriceSeats(SeatClass.economy.toString(), 50000.0);
 
-        res.displaySystemDetails();
+        res.displaySystemDetails();*/
     }
 
     public static int showMenu()
