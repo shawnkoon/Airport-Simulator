@@ -16,6 +16,27 @@ public abstract class Company
         return this.name;
     }
 
+    public String toFileString() // called from SystemManager
+    {
+        return this.name +"["+ printPathList() +"]";
+    }
+
+    private String printPathList()
+    {
+        String res = "";
+
+        for(Path path : pathList)
+        {
+            res += path.toFileString();
+
+            res += ", ";
+        }
+
+        res = res.substring(0, res.length() - 2);
+
+        return res;
+    }
+
     protected Path getPath(String id)
     {
         Path res = null;
