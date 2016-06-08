@@ -202,56 +202,6 @@ public abstract class Section
         return result;
     }
 
-    /*private int toInt(char col)
-    {
-        int result = -1;
-
-        switch(Character.toLowerCase(col))
-        {
-            case 'a':
-                result = 1;
-            break;
-
-            case 'b':
-                result = 2;
-            break;
-
-            case 'c':
-                result = 3;
-            break;
-
-            case 'd':
-                result = 4;
-            break;
-
-            case 'e':
-                result = 5;
-            break;
-
-            case 'f':
-                result = 6;
-            break;
-
-            case 'g':
-                result = 7;
-            break;
-
-            case 'h':
-                result = 8;
-            break;
-
-            case 'i':
-                result = 9;
-            break;
-
-            case 'j':
-                result = 10;
-            break;
-        }
-
-        return result;
-    }*/
-
     protected int[] getAvailablePreference(String preference)
     {
         int[] result = new int[2];
