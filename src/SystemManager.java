@@ -55,6 +55,43 @@ public class SystemManager
         }
     }
 
+    public void bookSeat(String airline, String flightID, SeatClass seatClass, String preference)
+    {
+        if(hasAirline(airline))
+        {
+            if(airlineList.get(findCompanyIndex(airline)).idExist(flightID))
+            {
+                Path currentPath = airlineList.get(findCompanyIndex(airline)).getPath(flightID);
+
+                if(currentPath.hasSection(seatClass.toString()))
+                {
+                    if(currentPath.getSection(seatClass.toString()).isPreferenceAvailable(preference))
+                    {
+                        Section currentSection = currentPath.getSection(seatClass.toString());
+
+                        //currentSection.bookSeat(this.airportFactory.createSeat(row, col));
+                    }
+                    else
+                    {
+                        System.out.println("The seat is currently unavailable.");
+                    }
+                }
+                else
+                {
+                    System.out.println("The section does not exist.");
+                }
+            }
+            else
+            {
+                System.out.println("No matching flight ID found.");
+            }
+        }
+        else
+        {
+            System.out.println("No such flight exists.");
+        }
+    }
+
     public void createAirline(String name)
     {
         if(hasAirline(name) == false)
