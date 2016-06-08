@@ -6,7 +6,7 @@ public abstract class Transport {
         this.name = name;
     }
 
-    public String getName()
+    protected String getName()
     {
         return this.name;
     }

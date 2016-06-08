@@ -1,4 +1,6 @@
+import java.time.YearMonth;
 import java.util.ArrayList;
+import java.util.Calendar;
 
 public class SystemManager
 {
@@ -93,6 +95,63 @@ public class SystemManager
         }
     }
 
+    private boolean isValidDate(int year, int month, int day)
+    {
+        boolean res = true;
+
+        int curYear = Calendar.getInstance().get(Calendar.YEAR);
+        int curMonth = Calendar.getInstance().get(Calendar.MONTH);
+        int curDay = Calendar.getInstance().get(Calendar.DATE);
+
+        if(year < curYear)
+        {
+            res = false;
+        }
+        else
+        {
+            if(year == curYear) // current year.
+            {
+                if(month < curMonth || month > 12) // month is already past or over 12.
+                {
+                    res = false;
+                }
+                else
+                {
+                    if(month == curMonth) // current month.
+                    {
+                        if(day < curDay || day > YearMonth.of(curYear, curMonth).lengthOfMonth())
+                        {
+                            res = false;
+                        }
+                    }
+                    else // month > curMonth (future)
+                    {
+                        if(day < 1 || day > YearMonth.of(curYear, month).lengthOfMonth())
+                        {
+                            res = false;
+                        }
+                    }
+                }
+            }
+            else // year > curYear (future)
+            {
+                if(month < 1 || month > 12)
+                {
+                    res = false;
+                }
+                else
+                {
+                    if(day < 1 || day > YearMonth.of(year, month).lengthOfMonth())
+                    {
+                        res = false;
+                    }
+                }
+            }
+        }
+
+        return res;
+    }
+
     public void createFlight(String company, String depart, String destination, int year, int month, int day, String ticketID)
     {
         if(hasAirline(company) && hasAirport(depart) && hasAirport(destination))
@@ -101,34 +160,16 @@ public class SystemManager
             {
                 if(hasAirport(destination))
                 {
-                    if(year > 0)
+                    if(isValidDate(year, month, day))
                     {
-                        if(month >= 1 && month <= 12)
+                        if(airlineList.get(findCompanyIndex(company)).idExist(ticketID) == false)
                         {
-                            if(day >= 1 && day <= 31)
-                            {
-                                if(airlineList.get(findCompanyIndex(company)).idExist(ticketID) == false)
-                                {
-                                    airlineList.get(findCompanyIndex(company)).addPath(this.airportFactory.createPath(company, depart, destination, year, month, day, ticketID));
-                                }
-                                else
-                                {
-                                    System.out.println("Request Error: ID [" + ticketID + "] already Exists.");
-                                }
-                            }
-                            else
-                            {
-                                System.out.println("Request Error: Day [" + year + "] is not valid.");
-                            }
-                        }
-                        else
-                        {
-                            System.out.println("Request Error: Month [" + month + "] is not valid.");
+                            airlineList.get(findCompanyIndex(company)).addPath(this.airportFactory.createPath(company, depart, destination, year, month, day, ticketID));
                         }
                     }
                     else
                     {
-                        System.out.println("Request Error: Year [" + year + "] is not valid.");
+                        System.out.println("Request Error: Date [" + year + "/" + month +"/"+ day +"] is not valid.");
                     }
                 }
                 else
