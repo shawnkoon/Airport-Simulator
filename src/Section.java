@@ -291,7 +291,7 @@ public abstract class Section
         result[0] = -1;
         result[1] = -1;
 
-        for(Seat seat : seatList)
+        /*for(Seat seat : seatList)
         {
             if(seat.getBookStatus() == false)
             {
@@ -299,6 +299,30 @@ public abstract class Section
                 result[1] = seat.getCol();
 
                 return result;
+            }
+        }*/
+
+        for(int c = 1; c < this.col; c++)
+        {
+            for(int r = 1; r <= this.row; r++)
+            {
+                boolean check = false;
+
+                for(Seat seat : seatList)
+                {
+                    if(this.toInt(seat.getCol()) == c && seat.getRow() == r)
+                    {
+                        check = true;
+                    }
+                }
+
+                if(check != true)
+                {
+                    result[0] = r;
+                    result[1] = c;
+
+                    return result;
+                }
             }
         }
 
