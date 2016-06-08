@@ -10,7 +10,7 @@ public class SystemManager
     private TransportationFactory airportFactory;
     private ArrayList<Transport> airportList;
     private ArrayList<Company> airlineList;
-    private FileUtilManager fileManager;
+    private UtilManager utility;
 
     public SystemManager()
     {
@@ -18,7 +18,7 @@ public class SystemManager
         this.airlineList = new ArrayList<Company>();
         this.airportFactory = new AirportFactory();
 
-        this.fileManager = new FileUtilManager();
+        this.utility = new UtilManager();
         
         readFile("src/airportInput.txt");
     }
@@ -272,7 +272,7 @@ public class SystemManager
         }
     }
 
-    private char toChar(int col)
+    /*private char toChar(int col)
     {
         char result = 'k';
 
@@ -320,7 +320,7 @@ public class SystemManager
         }
 
         return result;
-    }
+    }*/
 
     public void bookSeat(String airline, String flightID, SeatClass seatClass, String preference)
     {
@@ -341,7 +341,7 @@ public class SystemManager
 
                         if(opening[0] != -1 && opening[1] != -1)
                         {
-                            currentSection.bookSeat(this.airportFactory.createSeat(opening[0], this.toChar(opening[1])));
+                            currentSection.bookSeat(this.airportFactory.createSeat(opening[0], this.utility.toChar(opening[1])));
                         }
                         else
                         {
@@ -356,7 +356,7 @@ public class SystemManager
 
                         if(opening[0] != -1 && opening[1] != -1)
                         {
-                            currentSection.bookSeat(this.airportFactory.createSeat(opening[0], this.toChar(opening[1])));
+                            currentSection.bookSeat(this.airportFactory.createSeat(opening[0], this.utility.toChar(opening[1])));
                             System.out.println("Could not find your preference, but there was an open seat in the section!");
                         }
                         else
