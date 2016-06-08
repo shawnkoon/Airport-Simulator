@@ -84,25 +84,82 @@ public abstract class Section
 
         if(this.layout == 's')
         {
+            int count = 0;
+
             for(Seat seat : seatList)
             {
-                if(seat.getCol() <= Layout.SMALL.getValue())
+                if(this.toInt(seat.getCol()) <= Layout.SMALL.getValue())
                 {
-                    if(seat.getCol() == 1 && preference.toLowerCase().equals("window"))
+                    if((this.toInt(seat.getCol()) == 1 || this.toInt(seat.getCol()) == Layout.SMALL.getValue()) && preference.toLowerCase().equals("window"))
                     {
-                        return true;
+                        count++;
                     }
-                    else if(seat.getCol() == Layout.SMALL.getValue() && preference.toLowerCase().equals("aisle"))
+                    else if(this.toInt(seat.getCol()) == Layout.SMALL.getValue() && preference.toLowerCase().equals("aisle"))
                     {
-                        return true;
+                        count++;
                     }
                 }
             }
 
-            return true;
+            int windows = this.row * (Layout.SMALL.getValue()-1);
+
+            if(count == windows)
+            {
+                return false;
+            }
         }
 
-        return false;
+        return true;
+    }
+
+    private int toInt(char col)
+    {
+        int result = -1;
+
+        switch(Character.toLowerCase(col))
+        {
+            case 'a':
+                result = 1;
+            break;
+
+            case 'b':
+                result = 2;
+            break;
+
+            case 'c':
+                result = 3;
+            break;
+
+            case 'd':
+                result = 4;
+            break;
+
+            case 'e':
+                result = 5;
+            break;
+
+            case 'f':
+                result = 6;
+            break;
+
+            case 'g':
+                result = 7;
+            break;
+
+            case 'h':
+                result = 8;
+            break;
+
+            case 'i':
+                result = 9;
+            break;
+
+            case 'j':
+                result = 10;
+            break;
+        }
+
+        return result;
     }
 
     protected int[] getAvailablePreference(String preference)
@@ -118,6 +175,44 @@ public abstract class Section
 
         if(this.layout == 's')
         {
+            //new shit start
+
+            if(preference.toLowerCase().equals("window"))
+            {
+                if(this.seatList.size() < 1)
+                {
+                    result[0] = 1;
+                    result[1] = 1;
+                }
+
+                for(int c = 1; c <= Layout.SMALL.getValue(); c += 2)
+                {
+                    for(int r = 1; r <= this.row; r++)
+                    {
+                        boolean check = false;
+
+                        for(Seat seat : seatList)
+                        {
+                            if(this.toInt(seat.getCol()) == c && seat.getRow() == r)
+                            {
+                                check = true;
+                            }
+                        }
+
+                        if(check != true)
+                        {
+                            result[0] = r;
+                            result[1] = c;
+
+                            return result;
+                        }
+                    }
+                }
+            }
+        }
+            //new shit end
+
+            /*
             for(Seat seat : seatList)
             {
                 if(seat.getCol() <= Layout.SMALL.getValue())
@@ -185,7 +280,7 @@ public abstract class Section
                     }
                 }
             }
-        }
+        }*/
 
         return result;
     }

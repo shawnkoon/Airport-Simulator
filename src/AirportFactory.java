@@ -38,19 +38,19 @@ public class AirportFactory implements TransportationFactory
 
         if(layout == 's')
         {
-            return new FlightSection(company, ticketID, row, Layout.SMALL.ordinal(), seatClass);
+            return new FlightSection(company, ticketID, row, Layout.SMALL.getValue(), seatClass);
         }
         else if(layout == 'm')
         {
-            return new FlightSection(company, ticketID, row, Layout.MEDIUM.ordinal(), seatClass);
+            return new FlightSection(company, ticketID, row, Layout.MEDIUM.getValue(), seatClass);
         }
         else if(layout == 'w')
         {
-            return new FlightSection(company, ticketID, row, Layout.WIDE.ordinal(), seatClass);
+            return new FlightSection(company, ticketID, row, Layout.WIDE.getValue(), seatClass);
         }
         else
         {
-            return new FlightSection(company, ticketID, row, Layout.EMPTY.ordinal(), seatClass);
+            return new FlightSection(company, ticketID, row, Layout.EMPTY.getValue(), seatClass);
         }
     }
 

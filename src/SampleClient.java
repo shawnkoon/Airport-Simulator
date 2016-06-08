@@ -62,7 +62,10 @@ public class SampleClient {
         res.bookSeat("DELTA", "123", SeatClass.first, 1, 'A');
         //res.bookSeat("DELTA", "123", SeatClass.economy, 1, 'A');
         res.bookSeat("DELTA", "123", SeatClass.economy, "window");
-        res.bookSeat("DELTA", "123", SeatClass.economy, "aisle");
+        res.bookSeat("DELTA", "123", SeatClass.economy, "window");
+        res.bookSeat("DELTA", "123", SeatClass.economy, "window");
+        res.bookSeat("DELTA", "123", SeatClass.economy, "window");
+        res.bookSeat("DELTA", "123", SeatClass.economy, "window");
         //res.bookSeat("DELTA", "123", SeatClass.economy, 1, 'B');
         res.bookSeat("DELTA888", "123", SeatClass.business, 1, 'A'); //Invalid airline
         res.bookSeat("DELTA", "123haha7", SeatClass.business, 1, 'A'); //Invalid flightId
