@@ -45,7 +45,7 @@ public class SampleClient {
 
         res.createSection("DELTA","123", 's', 2, SeatClass.economy); //s layout
         //res.createSection("DELTA","123", 2, 2, SeatClass.economy);
-        res.createSection("DELTA","123", 2, 3, SeatClass.first);
+        res.createSection("DELTA","123", 'm', 3, SeatClass.first);
         res.createSection("DELTA","123", 2, 3, SeatClass.first);//Invalid seat,
         res.createSection("DELTA","123", 3, 7, SeatClass.business);
         res.createSection("SWSERTT","123", 5, 5, SeatClass.economy);//Invalid airline
@@ -68,6 +68,23 @@ public class SampleClient {
         res.bookSeat("DELTA", "123", SeatClass.economy, "aisle");
         res.bookSeat("DELTA", "123", SeatClass.economy, "aisle");
         res.bookSeat("DELTA", "123", SeatClass.economy, "aisle");
+        res.bookSeat("DELTA", "123", SeatClass.economy, "aisle");
+        res.bookSeat("DELTA", "123", SeatClass.economy, "aisle");
+        res.bookSeat("DELTA", "123", SeatClass.first, "window");
+        res.bookSeat("DELTA", "123", SeatClass.first, "window");
+        res.bookSeat("DELTA", "123", SeatClass.first, "window");
+        res.bookSeat("DELTA", "123", SeatClass.first, "window");
+        res.bookSeat("DELTA", "123", SeatClass.first, "window");
+        res.bookSeat("DELTA", "123", SeatClass.first, "window");
+        res.bookSeat("DELTA", "123", SeatClass.first, "window");
+        res.bookSeat("DELTA", "123", SeatClass.first, "window");
+        res.bookSeat("DELTA", "123", SeatClass.first, "window");
+        res.bookSeat("DELTA", "123", SeatClass.first, "window");
+        res.bookSeat("DELTA", "123", SeatClass.first, "window");
+        res.bookSeat("DELTA", "123", SeatClass.first, "window");
+        res.bookSeat("DELTA", "123", SeatClass.first, "window");
+        System.out.println("M should be full....");
+        res.bookSeat("DELTA", "123", SeatClass.first, "window");
         //res.bookSeat("DELTA", "123", SeatClass.economy, 1, 'B');
         res.bookSeat("DELTA888", "123", SeatClass.business, 1, 'A'); //Invalid airline
         res.bookSeat("DELTA", "123haha7", SeatClass.business, 1, 'A'); //Invalid flightId

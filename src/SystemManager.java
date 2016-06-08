@@ -349,7 +349,6 @@ public class SystemManager
                     {
                         Section currentSection = currentPath.getSection(seatClass.toString());
 
-                        //// TODO: 6/8/2016 CODE getAvailableSeat to work when 5th Window preference is added to S layout 
                         int[] opening = currentPath.getSection(seatClass.toString()).getAvailableSeat();
 
                         if(opening[0] != -1 && opening[1] != -1)
@@ -550,7 +549,7 @@ public class SystemManager
             {
                 if(airlineList.get(findCompanyIndex(airline)).getPath(flightID).hasSection(seatClass.toString()) == false)
                 {
-                    this.airportFactory.createSection2(airline, flightID, layout, row, seatClass.toString());
+                    //this.airportFactory.createSection2(airline, flightID, layout, row, seatClass.toString());
                     airlineList.get(findCompanyIndex(airline)).getPath(flightID).addSection(this.airportFactory.createSection2(airline, flightID, layout, row, seatClass.toString()));
                 }
                 else
