@@ -43,7 +43,7 @@ public class SampleClient {
 
         System.out.println("\n=====About to create Section.=====\n");
 
-        res.createSection("DELTA","123", 's', 2, SeatClass.economy);
+        res.createSection("DELTA","123", 's', 2, SeatClass.economy); //s layout
         res.createSection("DELTA","123", 2, 2, SeatClass.economy);
         res.createSection("DELTA","123", 2, 3, SeatClass.first);
         res.createSection("DELTA","123", 2, 3, SeatClass.first);//Invalid seat,
