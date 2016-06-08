@@ -7,13 +7,15 @@ public class SystemManager
     private TransportationFactory airportFactory;
     private ArrayList<Transport> airportList;
     private ArrayList<Company> airlineList;
+    private FileUtilManager fileManager;
 
     public SystemManager()
     {
         this.airportList = new ArrayList<Transport>();
         this.airlineList = new ArrayList<Company>();
-
         this.airportFactory = new AirportFactory();
+
+        this.fileManager = new FileUtilManager();
     }
 
     public void bookSeat(String airline, String flightID, SeatClass seatClass, int row, char col)
