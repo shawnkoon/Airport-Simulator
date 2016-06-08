@@ -113,19 +113,21 @@ public abstract class Section
             return false;
         }
 
+        UtilManager utility = new UtilManager();
+
         if(this.layout == 's')
         {
             int count = 0;
 
             for(Seat seat : seatList)
             {
-                if(this.toInt(seat.getCol()) <= Layout.SMALL.getValue())
+                if(utility.toInt(seat.getCol()) <= Layout.SMALL.getValue())
                 {
-                    if((this.toInt(seat.getCol()) == 1 || this.toInt(seat.getCol()) == Layout.SMALL.getValue()) && preference.toLowerCase().equals("window"))
+                    if((utility.toInt(seat.getCol()) == 1 || utility.toInt(seat.getCol()) == Layout.SMALL.getValue()) && preference.toLowerCase().equals("window"))
                     {
                         count++;
                     }
-                    else if(( this.toInt(seat.getCol()) == 1 || this.toInt(seat.getCol()) == Layout.SMALL.getValue()-1) && preference.toLowerCase().equals("aisle"))
+                    else if(( utility.toInt(seat.getCol()) == 1 || utility.toInt(seat.getCol()) == Layout.SMALL.getValue()-1) && preference.toLowerCase().equals("aisle"))
                     {
                         count++;
                     }
@@ -145,15 +147,12 @@ public abstract class Section
 
             for(Seat seat : seatList)
             {
-                int cstatus = this.toInt(seat.getCol());
-                int rstatus = seat.getRow();
-
-                if(this.toInt(seat.getCol()) <= Layout.MEDIUM.getValue())
+                if(utility.toInt(seat.getCol()) <= Layout.MEDIUM.getValue())
                 {
-                    if((this.toInt(seat.getCol()) == 1 || this.toInt(seat.getCol()) == Layout.MEDIUM.getValue()) && preference.toLowerCase().equals("window"))
+                    if((utility.toInt(seat.getCol()) == 1 || utility.toInt(seat.getCol()) == Layout.MEDIUM.getValue()) && preference.toLowerCase().equals("window"))
                     {
                         count++;
-                    } else if((this.toInt(seat.getCol()) == Layout.MEDIUM.getValue() - 2 || this.toInt(seat.getCol()) == Layout.MEDIUM.getValue() - 1) && preference.toLowerCase().equals("aisle"))
+                    } else if((utility.toInt(seat.getCol()) == Layout.MEDIUM.getValue() - 2 || utility.toInt(seat.getCol()) == Layout.MEDIUM.getValue() - 1) && preference.toLowerCase().equals("aisle"))
                     {
                         count++;
                     }
@@ -173,13 +172,13 @@ public abstract class Section
 
             for(Seat seat : seatList)
             {
-                if(this.toInt(seat.getCol()) <= Layout.WIDE.getValue())
+                if(utility.toInt(seat.getCol()) <= Layout.WIDE.getValue())
                 {
-                    if((this.toInt(seat.getCol()) == 1 || this.toInt(seat.getCol()) == Layout.WIDE.getValue()) && preference.toLowerCase().equals("window"))
+                    if((utility.toInt(seat.getCol()) == 1 || utility.toInt(seat.getCol()) == Layout.WIDE.getValue()) && preference.toLowerCase().equals("window"))
                     {
                         count++;
-                    } else if( ((this.toInt(seat.getCol()) == Layout.WIDE.getValue() - 7) || (this.toInt(seat.getCol()) == Layout.WIDE.getValue() - 6) ||
-                            (this.toInt(seat.getCol()) == Layout.WIDE.getValue() - 3) || (this.toInt(seat.getCol()) == Layout.WIDE.getValue() - 2)) && preference.toLowerCase().equals("aisle"))
+                    } else if( ((utility.toInt(seat.getCol()) == Layout.WIDE.getValue() - 7) || (utility.toInt(seat.getCol()) == Layout.WIDE.getValue() - 6) ||
+                            (utility.toInt(seat.getCol()) == Layout.WIDE.getValue() - 3) || (utility.toInt(seat.getCol()) == Layout.WIDE.getValue() - 2)) && preference.toLowerCase().equals("aisle"))
                     {
                         count++;
                     }
@@ -196,7 +195,7 @@ public abstract class Section
         return true;
     }
 
-    private int toInt(char col)
+    /*private int toInt(char col)
     {
         int result = -1;
 
@@ -244,7 +243,7 @@ public abstract class Section
         }
 
         return result;
-    }
+    }*/
 
     protected int[] getAvailablePreference(String preference)
     {
@@ -257,10 +256,10 @@ public abstract class Section
             return result;
         }
 
+        UtilManager utility = new UtilManager();
+
         if(this.layout == 's')
         {
-            //new shit start
-
             if(preference.toLowerCase().equals("window"))
             {
                 if(this.seatList.size() < 1)
@@ -277,7 +276,7 @@ public abstract class Section
 
                         for(Seat seat : seatList)
                         {
-                            if(this.toInt(seat.getCol()) == c && seat.getRow() == r)
+                            if(utility.toInt(seat.getCol()) == c && seat.getRow() == r)
                             {
                                 check = true;
                             }
@@ -309,7 +308,7 @@ public abstract class Section
 
                         for(Seat seat : seatList)
                         {
-                            if(this.toInt(seat.getCol()) == c && seat.getRow() == r)
+                            if(utility.toInt(seat.getCol()) == c && seat.getRow() == r)
                             {
                                 check = true;
                             }
@@ -344,7 +343,7 @@ public abstract class Section
 
                         for(Seat seat : seatList)
                         {
-                            if(this.toInt(seat.getCol()) == c && seat.getRow() == r)
+                            if(utility.toInt(seat.getCol()) == c && seat.getRow() == r)
                             {
                                 check = true;
                             }
@@ -376,7 +375,7 @@ public abstract class Section
 
                         for(Seat seat : seatList)
                         {
-                            if(this.toInt(seat.getCol()) == c && seat.getRow() == r)
+                            if(utility.toInt(seat.getCol()) == c && seat.getRow() == r)
                             {
                                 check = true;
                             }
@@ -411,7 +410,7 @@ public abstract class Section
 
                         for(Seat seat : seatList)
                         {
-                            if(this.toInt(seat.getCol()) == c && seat.getRow() == r)
+                            if(utility.toInt(seat.getCol()) == c && seat.getRow() == r)
                             {
                                 check = true;
                             }
@@ -445,7 +444,7 @@ public abstract class Section
 
                             for(Seat seat : seatList)
                             {
-                                if(this.toInt(seat.getCol()) == c && seat.getRow() == r)
+                                if(utility.toInt(seat.getCol()) == c && seat.getRow() == r)
                                 {
                                     check = true;
                                 }
@@ -463,78 +462,6 @@ public abstract class Section
                 }
             }
         }
-            //new shit end
-
-            /*
-            for(Seat seat : seatList)
-            {
-                if(seat.getCol() <= Layout.SMALL.getValue())
-                {
-                    if((seat.getCol() == 1 || seat.getCol() == Layout.SMALL.getValue()) && preference.toLowerCase().equals("window"))
-                    {
-                        result[0] = seat.getRow();
-                        result[1] = seat.getCol();
-
-                        return result;
-                    }
-                    else if((seat.getCol() == Layout.SMALL.getValue()-1 || seat.getCol() == Layout.SMALL.getValue()) && preference.toLowerCase().equals("aisle"))
-                    {
-                        result[0] = seat.getRow();
-                        result[1] = seat.getCol();
-
-                        return result;
-                    }
-                }
-            }
-        }
-        else if(this.layout == 'm')
-        {
-            for(Seat seat : seatList)
-            {
-                if(seat.getCol() <= Layout.MEDIUM.getValue())
-                {
-                    if((seat.getCol() == 1 || seat.getCol() == Layout.MEDIUM.getValue()) && preference.toLowerCase().equals("window"))
-                    {
-                        result[0] = seat.getRow();
-                        result[1] = seat.getCol();
-
-                        return result;
-                    }
-                    else if((seat.getCol() == Layout.MEDIUM.getValue()-2 || seat.getCol() == Layout.MEDIUM.getValue()-1) && preference.toLowerCase().equals("aisle"))
-                    {
-                        result[0] = seat.getRow();
-                        result[1] = seat.getCol();
-
-                        return result;
-                    }
-                }
-            }
-        }
-        else if(this.layout == 'w')
-        {
-            for(Seat seat : seatList)
-            {
-                if(seat.getCol() <= Layout.WIDE.getValue())
-                {
-                    if((seat.getCol() == 1 || seat.getCol() == Layout.WIDE.getValue()) && preference.toLowerCase().equals("window"))
-                    {
-                        result[0] = seat.getRow();
-                        result[1] = seat.getCol();
-
-                        return result;
-                    }
-                    else if((seat.getCol() == Layout.WIDE.getValue()-7 || seat.getCol() == Layout.WIDE.getValue()-6 ||
-                             seat.getCol() == Layout.WIDE.getValue()-3 || seat.getCol() == Layout.WIDE.getValue()-2) && preference.toLowerCase().equals("aisle"))
-                    {
-                        result[0] = seat.getRow();
-                        result[1] = seat.getCol();
-
-                        return result;
-                    }
-                }
-            }
-        }*/
-
         return result;
     }
 
@@ -544,16 +471,7 @@ public abstract class Section
         result[0] = -1;
         result[1] = -1;
 
-        /*for(Seat seat : seatList)
-        {
-            if(seat.getBookStatus() == false)
-            {
-                result[0] = seat.getRow();
-                result[1] = seat.getCol();
-
-                return result;
-            }
-        }*/
+        UtilManager utility = new UtilManager();
 
         for(int c = 1; c <= this.col; c++)
         {
@@ -563,7 +481,7 @@ public abstract class Section
 
                 for(Seat seat : seatList)
                 {
-                    if(this.toInt(seat.getCol()) == c && seat.getRow() == r)
+                    if(utility.toInt(seat.getCol()) == c && seat.getRow() == r)
                     {
                         check = true;
                     }
