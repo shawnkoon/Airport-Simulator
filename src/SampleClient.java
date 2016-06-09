@@ -18,8 +18,7 @@ public class SampleClient {
 
         SystemManager res = new SystemManager();
 
-/*
-        res.createAirport("DEN");
+        /*res.createAirport("DEN");
         res.createAirport("DFW");
         res.createAirport("LON");
         res.createAirport("DEN");//invalid
@@ -184,8 +183,8 @@ public class SampleClient {
 
         res.changePriceSeats(SeatClass.economy.toString(), 50000.0);
 
-        res.displaySystemDetails();
-*/
+        res.displaySystemDetails();*/
+
 
         while(choice != 9)
         {

@@ -690,7 +690,7 @@ public class SystemManager
                 {
                     String currentSeatClass = section.getSeatClass();
 
-                    if(currentSeatClass.equals(seatClass))
+                    if(currentSeatClass.equals(seatClass.toLowerCase()))
                     {
                         section.setPrice(price);
                     }
@@ -717,7 +717,7 @@ public class SystemManager
                         {
                             String currentSeatClass = section.getSeatClass();
 
-                            if(currentSeatClass.equals(seatClass))
+                            if(currentSeatClass.equals(seatClass.toLowerCase()))
                             {
                                 section.setPrice(price);
                             }
