@@ -18,6 +18,7 @@ public class SampleClient {
 
         SystemManager res = new SystemManager();
 
+/*
         res.createAirport("DEN");
         res.createAirport("DFW");
         res.createAirport("LON");
@@ -184,6 +185,7 @@ public class SampleClient {
         res.changePriceSeats(SeatClass.economy.toString(), 50000.0);
 
         res.displaySystemDetails();
+*/
 
         while(choice != 9)
         {
@@ -646,7 +648,7 @@ public class SampleClient {
             }
             else if(choice == 5)
             {
-
+                bookSeatPrompt(res);
             }
             else if(choice == 6)
             {
@@ -660,6 +662,7 @@ public class SampleClient {
                         Scanner kb = new Scanner(System.in);
                         System.out.print("Please enter an airline : ");
                         airline = kb.nextLine();
+
 
                         if (res.hasAirline(airline))
                         {
@@ -790,7 +793,6 @@ public class SampleClient {
             {
                 writeToFile(res);
             }
-
         }
     }
 
@@ -832,6 +834,61 @@ public class SampleClient {
             }
         }
         return choice;
+    }
+
+    public static void bookSeatPrompt(SystemManager res)
+    {
+        Scanner kb = new Scanner(System.in);
+
+        System.out.print("\nPlease Enter the Airline Name to Book Seat : ");
+        String airline = kb.nextLine();
+
+        System.out.print("Please Enter the FlightID for that Airline : ");
+        String flightID = kb.nextLine();
+
+        System.out.print("Please Enter the SeatClass < ex) first, business, economy > : ");
+        String seatClass = kb.nextLine().toLowerCase();
+
+        int rowNumb = 0;
+        while(rowNumb < 1)
+        {
+            try
+            {
+                System.out.print("Please Enter the Row Number of the Seat : ");
+                rowNumb = kb.nextInt();
+            }
+            catch (Exception e)
+            {
+                System.out.println("Error : Please Type a Number Greater than 0.\n");
+                rowNumb = 0;
+            }
+            kb.nextLine();
+        }
+
+        System.out.print("Please Enter the Column Character of the Seat : ");
+        String column = kb.nextLine().toUpperCase();
+        char columnChar = column.charAt(0);
+
+        System.out.println("");
+
+        if(seatClass.equals("first"))
+        {
+            res.bookSeat(airline, flightID, SeatClass.first, rowNumb, columnChar);
+        }
+        else if(seatClass.equals("business"))
+        {
+            res.bookSeat(airline, flightID, SeatClass.business, rowNumb, columnChar);
+        }
+        else if(seatClass.equals("economy"))
+        {
+            res.bookSeat(airline, flightID, SeatClass.economy, rowNumb, columnChar);
+        }
+        else
+        {
+            System.out.println("The seatClass ["+seatClass+"] is not valid.");
+        }
+
+        System.out.println("\nFinished.");
     }
 
     public static void readFromFile(SystemManager res)
