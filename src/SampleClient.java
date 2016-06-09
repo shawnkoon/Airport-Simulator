@@ -652,7 +652,138 @@ public class SampleClient {
             }
             else if(choice == 6)
             {
+                String airline = "";
+                boolean check = false;
 
+                while(check == false)
+                {
+                    try
+                    {
+                        Scanner kb = new Scanner(System.in);
+                        System.out.print("Please enter an airline : ");
+                        airline = kb.nextLine();
+
+
+                        if (res.hasAirline(airline))
+                        {
+                            check = true;
+                        }
+                        else
+                        {
+                            System.out.println("Airline not found!");
+                        }
+                    }
+                    catch(Exception e)
+                    {
+
+                    }
+                }
+
+                String id = "";
+                check = false;
+
+                while(check == false)
+                {
+                    try
+                    {
+                        Scanner kb = new Scanner(System.in);
+                        System.out.print("Please enter a flight ID : ");
+                        id = kb.nextLine();
+
+                        check = true;
+                    }
+                    catch(Exception e)
+                    {
+
+                    }
+                }
+
+                System.out.println("\nPlease choose a preferred Seat Class:\n\t1. ECONOMY\n\t2. FIRST\n\t3. BUSINESS\n\t4. QUIT");
+                System.out.print("Please enter your choice : ");
+
+                check = false;
+
+                int result = -1;
+                SeatClass seatClass = SeatClass.economy;
+
+                while(check == false)
+                {
+                    try
+                    {
+                        Scanner kb = new Scanner(System.in);
+                        result = kb.nextInt();
+
+                        if(result >= 1 && result <= 4)
+                        {
+                            check = true;
+                        }
+                    }
+                    catch(Exception e)
+                    {
+
+                    }
+
+                    if(check == false)
+                    {
+                        System.out.print("Please enter a number between [1-3] : ");
+                    }
+                }
+
+                if(result != -1 && result != 4)
+                {
+                    switch(result)
+                    {
+                        case 1:
+                            seatClass = SeatClass.economy;
+                            break;
+                        case 2:
+                            seatClass = SeatClass.first;
+                            break;
+                        case 3:
+                            seatClass = SeatClass.business;
+                            break;
+                    }
+
+                    String preference = "";
+                    result = -1;
+                    check = false;
+
+                    while(check == false)
+                    {
+                        try
+                        {
+                            Scanner kb = new Scanner(System.in);
+                            System.out.println("Please choose a preference:\n\t1. WINDOW\n\t2. AISLE\n\t3. QUIT");
+                            System.out.print("Please enter your choice : ");
+
+                            result = kb.nextInt();
+
+                            if(result >= 1 && result <= 3)
+                            {
+                                check = true;
+                            }
+                        }
+                        catch(Exception e)
+                        {
+
+                        }
+                    }
+
+                    if(result != 3 && result != -1)
+                    {
+                        switch(result)
+                        {
+                            case 1:
+                                preference = "window";
+                                break;
+                            case 2:
+                                preference = "aisle";
+                                break;
+                        }
+
+                        res.bookSeat(airline, id, seatClass, preference);
+                    }
+                }
             }
             else if(choice == 7)
             {
@@ -662,7 +793,6 @@ public class SampleClient {
             {
                 writeToFile(res);
             }
-
         }
     }
 
