@@ -31,8 +31,8 @@ public abstract class Company
 
             res += ", ";
         }
-
-        res = res.substring(0, res.length() - 2);
+        if(!res.equals(""))
+            res = res.substring(0, res.length() - 2);
 
         return res;
     }
