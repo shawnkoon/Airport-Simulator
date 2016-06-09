@@ -6,6 +6,9 @@
  * C H
  * K S
  *
+ * NOTE: Part 1 + additional testing data was commented out below.
+ *       Feel free to uncomment the code to test functionality as was designed for this program.
+ *       Thank you!
  */
 
 import java.io.File;
